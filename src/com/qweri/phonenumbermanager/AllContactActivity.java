@@ -57,12 +57,6 @@ public class AllContactActivity extends Activity{
 		loadADView();
 		getAllContact();
 		
-		Intent service = new Intent(this, InterceptService.class);
-		startService(service);
-		if(getIntent().getBooleanExtra(InterceptService.EXTRA_CLICKED_NOTIFY, false)) {
-			NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-			mNotificationManager.cancel(1);
-		}
 	}
 	
 	@Override

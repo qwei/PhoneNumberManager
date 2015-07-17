@@ -129,7 +129,7 @@ Log.d("ttt", "intercept service..");
 		Notification nf = nfBuilder.build();
 		RemoteViews notifRemoteView = new RemoteViews(this.getPackageName(), R.layout.notification_layout);
 		notifRemoteView.setTextViewText(R.id.phone, number);
-		Intent intent = new Intent(this,AllContactActivity.class);
+		Intent intent = new Intent(this,MainActivity.class);
 		intent.putExtra(EXTRA_CLICKED_NOTIFY, true);
 		PendingIntent pendingIntent = PendingIntent.getActivity(this, NOTIFICATION_REQUEST_CODE, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 		

@@ -7,7 +7,7 @@ import android.util.Log;
 
 public class BlackListUtils {
 	public static final String SP_BLOCK_NUMBER = "black_list_number";
-	public static final String SPLIT = "+";
+	public static final String SPLIT = ",";
 
 	private static void setBlockNumber(Context context, String number) {
 		SharedPreferences sharedPreferences = PreferenceManager
