@@ -28,12 +28,14 @@ import cn.domob.android.ads.AdEventListener;
 import cn.domob.android.ads.AdManager.ErrorCode;
 import cn.domob.android.ads.AdView;
 
+import com.baidu.appx.BDBannerAd;
+import com.baidu.appx.BDBannerAd.BannerAdListener;
+
 public class MainActivity extends Activity implements OnClickListener {
 
 	private static final String TAG = MainActivity.class.getSimpleName();
 
-	private static final String DOMOB_PUBLIC_ID = "56OJxqJouN2zT9GFmy";
-	private static final String DOMOB_INLINE_ID = "16TLejFvApq3cNUvs9Jg-QMs";
+	
 
 	private LinearLayout hit;
 	private TextView hitText1,hitText2;
@@ -42,15 +44,24 @@ public class MainActivity extends Activity implements OnClickListener {
 	RelativeLayout mAdContainer;
 	private ListView blackListView;
 	private BlackListViewAdapter blackListViewAdapter;
+	
 	AdView mAdview;
 	private List<String> blackList;
+	
+	private RelativeLayout appxBannerContainer;
+	private static BDBannerAd bannerAdView;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		initView();
-		loadADView();
+		if(Constants.isUseBaiduAd) {
+			loadBaiduAd();
+		} else {
+			loadDuoMengADView();
+		}
+		
 		
 		Intent service = new Intent(this, InterceptService.class);
 		startService(service);
@@ -60,6 +71,48 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 	}
 
+	private void loadBaiduAd() {
+		bannerAdView = new BDBannerAd(this, Constants.BAIDU_API_KEY,Constants.BAIDU_AD_ID);
+
+		// 设置横幅广告展示尺寸，如不设置，默认为SIZE_FLEXIBLE;
+		bannerAdView.setAdSize(BDBannerAd.SIZE_320X50);
+
+		// 设置横幅广告行为监听器
+		bannerAdView.setAdListener(new BannerAdListener() {
+
+			@Override
+			public void onAdvertisementDataDidLoadFailure() {
+				Log.e(TAG, "load failure");
+			}
+
+			@Override
+			public void onAdvertisementDataDidLoadSuccess() {
+				Log.e(TAG, "load success");
+			}
+
+			@Override
+			public void onAdvertisementViewDidClick() {
+				Log.e(TAG, "on click");
+			}
+
+			@Override
+			public void onAdvertisementViewDidShow() {
+				Log.e(TAG, "on show");
+			}
+
+			@Override
+			public void onAdvertisementViewWillStartNewIntent() {
+				Log.e(TAG, "leave app");
+			}
+		});
+
+		// 创建广告容器
+		appxBannerContainer = (RelativeLayout) findViewById(R.id.baidu_banner_container);
+
+		// 显示广告视图
+		appxBannerContainer.addView(bannerAdView);
+	}
+	
 	@Override
 	protected void onResume() {
 		blackList = getBlackList();
@@ -141,10 +194,10 @@ public class MainActivity extends Activity implements OnClickListener {
 		return result;
 	}
 
-	private void loadADView() {
+	private void loadDuoMengADView() {
 		mAdContainer = (RelativeLayout) findViewById(R.id.adcontainer);
 		// Create ad view
-		mAdview = new AdView(this, DOMOB_PUBLIC_ID, DOMOB_INLINE_ID);
+		mAdview = new AdView(this, Constants.DOMOB_PUBLIC_ID, Constants.DOMOB_INLINE_ID);
 		mAdview.setAdEventListener(new AdEventListener() {
 			@Override
 			public void onAdOverlayPresented(AdView adView) {
@@ -183,13 +236,13 @@ public class MainActivity extends Activity implements OnClickListener {
 	}
 
 	private boolean isValidNumber(String number) {
-		Log.d("ttttt", number);
+//		Log.d("ttttt", number);
 		if(number == null || number.length() != 11)
 			return true;
 		for(int i = 0; i< number.length(); i++) {
 			
 			int c = Integer.parseInt(number.charAt(i)+"");
-			Log.d("ttttt", c+"+++");
+//			Log.d("ttttt", c+"+++");
 			if(c > 10 || c < 0) {
 				return true;
 			}

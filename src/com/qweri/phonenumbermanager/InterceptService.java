@@ -76,7 +76,7 @@ public class InterceptService extends Service {
 				"android.intent.action.PHONE_STATE");
 		registerReceiver(mReceiver, filter);// 注册BroadcastReceiver
 		mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-Log.d("ttt", "intercept service..");
+//Log.d("ttt", "intercept service..");
 		// 利用反射获取隐藏的endcall方法
 		TelephonyManager telephonyMgr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
 		try {

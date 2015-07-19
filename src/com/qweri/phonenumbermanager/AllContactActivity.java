@@ -21,6 +21,8 @@ import cn.domob.android.ads.AdEventListener;
 import cn.domob.android.ads.AdManager.ErrorCode;
 import cn.domob.android.ads.AdView;
 
+import com.baidu.appx.BDBannerAd;
+import com.baidu.appx.BDBannerAd.BannerAdListener;
 import com.umeng.analytics.MobclickAgent;
 
 public class AllContactActivity extends Activity{
@@ -36,6 +38,9 @@ public class AllContactActivity extends Activity{
 	private List<ContactBean> contactList = new ArrayList<>();
 	private static final int WHAT_GET_ONE_PERSION = 0;
 //	private ProgressBar
+	
+	private RelativeLayout appxBannerContainer;
+	private static BDBannerAd bannerAdView;
 	
 	Handler handler = new Handler(){
 		public void handleMessage(android.os.Message msg) {
@@ -54,11 +59,52 @@ public class AllContactActivity extends Activity{
 		listView = (ListView) findViewById(R.id.all_contact_list);
 		allContactAdapter = new  AllContactAdapter(this, contactList);
 		listView.setAdapter(allContactAdapter);
-		loadADView();
+		if(Constants.isUseBaiduAd) {
+			loadBaiduAd();
+		} else {
+			loadDuoMengADView();
+		}
 		getAllContact();
 		
 	}
 	
+	
+	private void loadBaiduAd() {
+		bannerAdView = new BDBannerAd(this, Constants.BAIDU_API_KEY,Constants.BAIDU_AD_ID);
+
+		// 设置横幅广告展示尺寸，如不设置，默认为SIZE_FLEXIBLE;
+		bannerAdView.setAdSize(BDBannerAd.SIZE_320X50);
+
+		// 设置横幅广告行为监听器
+		bannerAdView.setAdListener(new BannerAdListener() {
+
+			@Override
+			public void onAdvertisementDataDidLoadFailure() {
+			}
+
+			@Override
+			public void onAdvertisementDataDidLoadSuccess() {
+			}
+
+			@Override
+			public void onAdvertisementViewDidClick() {
+			}
+
+			@Override
+			public void onAdvertisementViewDidShow() {
+			}
+
+			@Override
+			public void onAdvertisementViewWillStartNewIntent() {
+			}
+		});
+
+		// 创建广告容器
+		appxBannerContainer = (RelativeLayout) findViewById(R.id.baidu_banner_container);
+
+		// 显示广告视图
+		appxBannerContainer.addView(bannerAdView);
+	}
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
@@ -73,7 +119,6 @@ public class AllContactActivity extends Activity{
 	}
 	private void getAllContact() {
 		new Thread(new Runnable() {
-			
 			@Override
 			public void run() {
 				Uri uri = Uri.parse("content://com.android.contacts/contacts");
@@ -111,45 +156,45 @@ public class AllContactActivity extends Activity{
 		
 	}
 	
-	private void loadADView(){
+	private void loadDuoMengADView(){
 		mAdContainer = (RelativeLayout) findViewById(R.id.adcontainer);
 		// Create ad view
 		mAdview = new AdView(this, DOMOB_PUBLIC_ID, DOMOB_INLINE_ID);
 		mAdview.setAdEventListener(new AdEventListener() {
 			@Override
 			public void onAdOverlayPresented(AdView adView) {
-				Log.d("tt", "onAdOverlayPresented");
+				// Log.d("tt", "onAdOverlayPresented");
 			}
 
 			@Override
 			public void onAdOverlayDismissed(AdView adView) {
-				Log.d("tt", "onAdOverlayDismissed");
+//				Log.d("tt", "onAdOverlayDismissed");
 			}
 
 			@Override
 			public void onAdClicked(AdView arg0) {
-				Log.d("tt", "onAdClicked");
+//				Log.d("tt", "onAdClicked");
 			}
 
 			@Override
 			public void onLeaveApplication(AdView arg0) {
-				Log.d("tt", "onLeaveApplication");
+//				Log.d("tt", "onLeaveApplication");
 			}
 
 			@Override
 			public Context onAdRequiresCurrentContext() {
-				Log.d("tt", "onAdRequiresCurrentContext");
+//				Log.d("tt", "onAdRequiresCurrentContext");
 				return AllContactActivity.this;
 			}
 
 			@Override
 			public void onAdFailed(AdView arg0, ErrorCode arg1) {
-				Log.d("tt", "onAdFailed");
+//				Log.d("tt", "onAdFailed");
 			}
 
 			@Override
 			public void onEventAdReturned(AdView arg0) {
-				Log.d("tt", "onEventAdReturned");
+//				Log.d("tt", "onEventAdReturned");
 			}
 		});
 		RelativeLayout.LayoutParams layout = new RelativeLayout.LayoutParams(
