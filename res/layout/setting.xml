@@ -1,7 +1,8 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -10,116 +11,120 @@
     tools:context="com.qweri.phonenumbermanager.MainActivity" >
 
     <LinearLayout
-        android:layout_width="0px"
-        android:layout_height="0px"
-        android:focusable="true"
-        android:focusableInTouchMode="true" >
-
-        <requestFocus />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/add_layout"
+        android:id="@+id/intercept_all_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <EditText
-                android:id="@+id/block_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="请输入想要拦截的号码" 
-                android:textSize="13sp"
-                android:layout_weight="1" 
-                android:singleLine="true"/>
-
-            <Button
-                android:id="@+id/add_number"
-                android:layout_width="wrap_content"
-                android:layout_height="38dp"
-                android:text="添加" 
-                android:layout_marginLeft="10dp"
-                android:textSize="17sp"
-                android:background="@drawable/a_button_green_selector"
-                android:textColor="#ffffff"/>
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/all_numbers"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:textSize="17sp"
-            android:text="通讯录查找" 
-            android:background="@drawable/a_button_green_selector"
-            android:textColor="#ffffff"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/line"
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:layout_below="@id/add_layout"
-        android:layout_marginTop="15dp"
-        android:background="#55333666"
-        android:orientation="vertical" >
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/hit"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/line"
-        android:layout_marginTop="15dp"
         android:orientation="horizontal" >
 
         <TextView
-            android:id="@+id/hit_text1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="已拦截号码"
-            android:textColor="#dd333333"
+            android:text="拦截所有号码"
+            android:textColor="#bb333333"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/hit_text2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <CheckBox
+            android:id="@+id/intercept_all_checkbox"
+            style="@style/my_checkbox_style"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="(长按删除)"
-            android:textColor="#66333333"
-            android:textSize="13sp" />
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/black_list_view"
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#33333333" />
+
+    <LinearLayout
+        android:id="@+id/intercept_unknow_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/hit"
-        android:cacheColorHint="#FFFFFFFF"
-        android:clickable="false"
-        android:divider="#20000000"
-        android:dividerHeight="1px"
-        android:scrollbars="vertical" 
-        >
-    </ListView>
+        android:orientation="horizontal" >
 
-    <RelativeLayout
-        android:id="@+id/adcontainer"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="拦截非通讯录号码"
+            android:textColor="#bb333333"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <CheckBox
+            android:id="@+id/intercept_unknow_checkbox"
+            style="@style/my_checkbox_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#33333333" />
+
+    <TextView
+        android:id="@+id/clear_data"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" >
-    </RelativeLayout>
-    
-    <RelativeLayout
-        android:id="@+id/baidu_banner_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" >
-    </RelativeLayout>
+        android:text="清空所有纪录"
+        android:textColor="#bb333333"
+        android:textSize="18sp" />
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#33333333" />
+
+    <TextView
+        android:id="@+id/feedback"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="意见反馈"
+        android:textColor="#bb333333"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#33333333" />
+
+    <TextView
+        android:id="@+id/share"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="分享给朋友"
+        android:textColor="#bb333333"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#33333333" />
+
+    <TextView
+        android:id="@+id/about"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="关于"
+        android:textColor="#bb333333"
+        android:textSize="18sp" />
+
+</LinearLayout>

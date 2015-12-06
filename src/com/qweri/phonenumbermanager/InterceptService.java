@@ -9,9 +9,11 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.Cursor;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Handler;
@@ -22,6 +24,7 @@ import android.support.v4.app.NotificationCompat;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.RemoteViews;
+import android.widget.Toast;
 
 import com.android.internal.telephony.ITelephony;
 
@@ -42,27 +45,25 @@ public class InterceptService extends Service {
 	private ITelephony iTelephony;
 	private AudioManager mAudioManager;
 	
-	public static List<String> interceptNumbers = new ArrayList<>();
-
-	private Handler mHandler = new Handler() {
-		public void handleMessage(Message response) {
-			int what = response.what;
-			switch (what) {
-			case OP_REGISTER: {
-				Intent i = new Intent(Intent.ACTION_CALL);
-				i.setData(Uri.parse(ENABLE_SERVICE));
-				startActivity(i);
-				break;
-			}
-			case OP_CANCEL: {
-				Intent i = new Intent(Intent.ACTION_CALL);
-				i.setData(Uri.parse(DISABLE_SERVICE));
-				startActivity(i);
-				break;
-			}
-			}
-		}
-	};
+//	private Handler mHandler = new Handler() {
+//		public void handleMessage(Message response) {
+//			int what = response.what;
+//			switch (what) {
+//			case OP_REGISTER: {
+//				Intent i = new Intent(Intent.ACTION_CALL);
+//				i.setData(Uri.parse(ENABLE_SERVICE));
+//				startActivity(i);
+//				break;
+//			}
+//			case OP_CANCEL: {
+//				Intent i = new Intent(Intent.ACTION_CALL);
+//				i.setData(Uri.parse(DISABLE_SERVICE));
+//				startActivity(i);
+//				break;
+//			}
+//			}
+//		}
+//	};
 
 	@Override
 	public IBinder onBind(Intent arg0) {
@@ -103,8 +104,9 @@ public class InterceptService extends Service {
 			// Log.d(TAG, "Incomng Number: " + number);
 
 			if (state.equalsIgnoreCase(TelephonyManager.EXTRA_STATE_RINGING)) {// 电话正在响铃
-				if (BlackListUtils.isNumberInBlackList(context, number)) {// 拦截指定的电话号码
-//					interceptNumbers.add(number);
+				mAudioManager
+				.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+				if (isInterceptNumber(number)) {// 拦截指定的电话号码
 					showNotification(number);
 					// 先静音处理
 					mAudioManager
@@ -117,12 +119,41 @@ public class InterceptService extends Service {
 						e.printStackTrace();
 					}
 
-					// 再恢复正常铃声
-					mAudioManager
-							.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
-				}
+					
+				} 
+				// 再恢复正常铃声
+				mAudioManager
+						.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
 			}
 		}
+	}
+	
+	private boolean isInterceptNumber(String number) {
+		if(BlackListUtils.isInterceptAllNumber(this)) {
+			return true;
+		}
+		if(BlackListUtils.isInterceptUnknow(this) && !isNumberInContactList(number)) {
+			return true;
+		}
+		if(BlackListUtils.isNumberInBlackList(this, number)) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean isNumberInContactList(String number) {
+		Uri uri = Uri.parse("content://com.android.contacts/data/phones/filter/" + number);
+        ContentResolver resolver = this.getContentResolver();
+        String name = null;
+        Cursor cursor = resolver.query(uri, new String[]{"display_name"}, null, null, null);
+        if (cursor.moveToFirst()) {
+            name = cursor.getString(0);
+        }
+        cursor.close();
+        if(name != null) {
+        	return true;
+        }
+        return false;
 	}
 	private void showNotification(String number) {
 		NotificationCompat.Builder nfBuilder = new NotificationCompat.Builder(this);

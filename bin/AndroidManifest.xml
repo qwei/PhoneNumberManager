@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.qweri.phonenumbermanager"
-    android:versionCode="3"
-    android:versionName="1.1.0" >
+    android:versionCode="6"
+    android:versionName="1.2.2" >
 
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="21" />
 
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
+    
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon"
@@ -25,6 +30,8 @@
         <service android:name=".InterceptService"></service>
         <activity android:name="cn.domob.android.ads.DmActivity" android:theme="@android:style/Theme.Translucent"></activity>
         <activity android:name=".AllContactActivity"></activity>
+        <activity android:name=".CallLogsActivity"></activity>
+        <activity android:name=".SettingActivity"></activity>
         <receiver android:name=".InComingCallReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.PHONE_STATE"/>
@@ -35,27 +42,22 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        
-        <!-- 移动云AppX SDK -->
-        <activity android:name="com.baidu.appx.ui.BDInnerBrowser" />
-
-        <receiver android:name="com.baidu.appx.app_download.CompleteReceiver" >
-            <intent-filter>
-                <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
-                <action android:name="android.intent.action.DOWNLOAD_NOTIFICATION_CLICKED" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_ADDED" />
-
-                <data android:scheme="package" />
-                <!-- 注意！！ 这句必须要加，否则接收不到安装完成广播 -->
-            </intent-filter>
-        </receiver>
-        
         <meta-data android:value="55a2530367e58e59540083af" android:name="UMENG_APPKEY"></meta-data>
-<meta-data android:value="360" android:name="UMENG_CHANNEL"/>
+<meta-data android:value="Tencent" android:name="UMENG_CHANNEL"/>
+
+		<activity
+            android:name="cn.dow.android.DActivity"
+            android:screenOrientation="portrait" />
+
+        <service android:name="cn.dow.android.DService" />
+
+        <meta-data
+            android:name="D_PPID"
+            android:value="96ZJ2/SAzebJTwTOau" />
+        
     </application>
 
+    
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>    
     <uses-permission android:name="android.permission.CALL_PHONE"/>
@@ -71,7 +73,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!-- 获取WiFi状态 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG"/>
     
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.GET_TASKS" />
 </manifest>
