@@ -1,0 +1,7 @@
+#Sat Nov 12 13:24:34 CST 2016
+base.0=/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/transforms/dex/baidu/debug/folders/1000/10/instant-run_9baa2d4f594171dc71a407516b369f3bb279602b
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/transforms/dex/baidu/debug/folders/1000/10/instant-run-bootstrap_bffaca85a470538648ac25d085de2f1d5a6d7515/classes.dex
+base.1=/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/transforms/dex/baidu/debug/folders/1000/10/instant-run-bootstrap_bffaca85a470538648ac25d085de2f1d5a6d7515
+file.0=/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/transforms/dex/baidu/debug/folders/1000/10/instant-run_9baa2d4f594171dc71a407516b369f3bb279602b/classes.dex
