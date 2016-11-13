@@ -44,6 +44,7 @@ public class CallLogsFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.call_logs, null);
 		callLogsListview = (ListView) view.findViewById(R.id.call_logs_list);
+		callLogsListview.setEmptyView(view.findViewById(R.id.empty_view));
 		callLogs = new ArrayList<CallLogBean>();
 		callLogAdapter = new CallLogsAdapter(getActivity(), callLogs);
 		callLogsListview.setAdapter(callLogAdapter);
@@ -79,6 +80,7 @@ public class CallLogsFragment extends Fragment {
 						mHandler.sendMessage(msg);
 					}
 				} catch (Exception e) {
+					e.printStackTrace();
 				}
 
 			}

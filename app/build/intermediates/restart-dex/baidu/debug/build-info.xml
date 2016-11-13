@@ -1,44 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
-    abi="armeabi-v7a,armeabi"
-    api-level="23"
-    density="xxhdpi"
+    abi="armeabi"
+    api-level="10"
+    density="ldpi"
     format="8"
     plugin-version="2.2.1"
-    timestamp="258849057219417"
+    timestamp="70638953237521"
     token="-8727990532136001989"
-    verifier="COLD_SWAP_REQUESTED" >
+    verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="568" />
+        duration="3440" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="44" />
+        duration="70" />
     <task
         name="verifier"
         duration="3" />
 
     <artifact
-        location="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/transforms/dex/baidu/debug/folders/1000/5/slice_0/classes.dex"
-        type="DEX" />
+        location="/Users/zqwei/Downloads/PhoneNumberManager/app/build/outputs/apk/app-baidu-debug.apk"
+        type="MAIN" />
 
     <build
-        timestamp="257965367496053"
+        timestamp="70638953237521"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="/Users/zqwei/Downloads/PhoneNumberManager/app/build/outputs/apk/app-baidu-debug.apk"
             type="MAIN" />
-    </build>
-    <build
-        timestamp="258849057219417"
-        verifier="COLD_SWAP_REQUESTED" >
-        <artifact
-            location="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/transforms/dex/baidu/debug/folders/1000/5/slice_0/classes.dex"
-            type="DEX" />
     </build>
 
 </instant-run>

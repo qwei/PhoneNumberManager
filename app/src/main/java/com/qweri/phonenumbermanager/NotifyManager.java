@@ -42,7 +42,7 @@ public class NotifyManager {
         nf.flags = Notification.FLAG_ONGOING_EVENT;
         nf.icon = R.drawable.icon;
         nf.tickerText = context.getString(R.string.alive_notification_title);
-        nf.priority = Notification.PRIORITY_HIGH;
+//        nf.priority = Notification.PRIORITY_HIGH;
 
 
         android.app.NotificationManager mNotificationManager = (android.app.NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);

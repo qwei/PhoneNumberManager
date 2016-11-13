@@ -41,7 +41,7 @@ public class AddBlockNumberActivity extends AppCompatActivity{
 		setContentView(R.layout.add_block_number);
 		StatusBarUtil.setColor(this, getResources().getColor(R.color.main_color));
 		mToolbar = (Toolbar) findViewById(R.id.toolbar);
-		mToolbar.setTitle("添加拦截号码");// 标题的文字需在setSupportActionBar之前，不然会无效
+		mToolbar.setTitle(getString(R.string.add_block_number));// 标题的文字需在setSupportActionBar之前，不然会无效
 		setSupportActionBar(mToolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		mViewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -59,9 +59,6 @@ public class AddBlockNumberActivity extends AppCompatActivity{
 		mViewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
 		mViewPager.setOffscreenPageLimit(3);
 		mViewPager.setCurrentItem(1);
-//		ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CONTACTS},
-//				READ_CONTACT_PERMISSION_REQUEST_CODE);
-//		loadADView();
 	}
 	
 	private void loadADView(){
@@ -131,14 +128,4 @@ public class AddBlockNumberActivity extends AppCompatActivity{
 		
 	}
 
-//	@Override
-//	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//
-//		if(requestCode == READ_CONTACT_PERMISSION_REQUEST_CODE) {
-//			Log.d("zqwei", grantResults[0] + "+++++");
-//		}
-//	}
-//
-//	private static final int READ_CONTACT_PERMISSION_REQUEST_CODE = 1;
 }

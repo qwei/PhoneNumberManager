@@ -84,18 +84,17 @@ public class InterceptService extends Service {
             } catch (Exception ex) {
             }
         }
-		startAlarmService();
 		Log.d("xxxxx", "intercept service.........");
 		return START_STICKY;
 	}
 
-	private void startAlarmService() {
-		Intent service = new Intent(this, InterceptService.class);
-		PendingIntent pendingIntent = PendingIntent.getService(this, ALART_MANAGER_REQUEST_CODE, service, 0);
-		AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
-		am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(),
-				1000 * 60 * 10, pendingIntent);
-	}
+//	private void startAlarmService() {
+//		Intent service = new Intent(this, InterceptService.class);
+//		PendingIntent pendingIntent = PendingIntent.getService(this, ALART_MANAGER_REQUEST_CODE, service, 0);
+//		AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
+//		am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(),
+//				1000 * 60 * 10, pendingIntent);
+//	}
 
 	private class IncomingCallReceiver extends BroadcastReceiver {
 		@Override
@@ -214,7 +213,7 @@ public class InterceptService extends Service {
 	@Override
 	public void onDestroy() {
 		unregisterReceiver(mReceiver);
-		Intent service = new Intent(this,InterceptService.class);
+		Intent service = new Intent(this,CoreService.class);
 		startService(service);
 		super.onDestroy();
 	}

@@ -2,85 +2,85 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="/Users/zqwei/Downloads/PhoneNumberManager/app/libs/YoumiSdk_v5.3.1_2015-12-30.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.0"
-        sha1="a472d815158675440fd497e376416b6779cf133e">
-        <dex dex="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/transforms/dex/baidu/debug/folders/1000/2/YoumiSdk_v5.3.1_2015-12-30_c8fac45067b9ab49d6fb7dc952f1eb7f69f5d21e/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.0"
-        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
-        <dex dex="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/transforms/dex/baidu/debug/folders/1000/10/internal_impl-22.2.1_3e6f2f806f8be7168d4f56d0314e77eed26512c4/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/zqwei/Downloads/PhoneNumberManager/app/libs/TalkingData_Analytics_Android_SDK_V2.2.37.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.0"
-        sha1="8356d4b85812b04943ab2ef480fe00cedf2ce67c">
-        <dex dex="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/transforms/dex/baidu/debug/folders/1000/2/TalkingData_Analytics_Android_SDK_V2.2.37_2976dfe597c22d8e4ef0191466da880464411d8e/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/incremental-classes/baidu/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.0"
-        sha1="3f977a850b6d1e32d24ca35cbd13201ff6df3d0e">
-        <dex dex="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/transforms/dex/baidu/debug/folders/1000/10/instant-run-bootstrap_bffaca85a470538648ac25d085de2f1d5a6d7515/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
+        is-multidex="false"
         jar="/Users/zqwei/Downloads/PhoneNumberManager/app/libs/libs_daemon-1.0.0-r.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.0"
         sha1="cc92697b39cbb6c676d38da6cedec4a9e498ff7e">
-        <dex dex="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/transforms/dex/baidu/debug/folders/1000/2/libs_daemon-1.0.0-r_d1d6ba2aba59a192b5937777029deb0b4ee2c45f/classes.dex" />
+        <dex dex="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/pre-dexed/baidu/debug/libs_daemon-1.0.0-r_d1d6ba2aba59a192b5937777029deb0b4ee2c45f.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/incremental-runtime-classes/baidu/debug/instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.0"
-        sha1="a962a794a1218dd93707974274277fcf8bf19dcd">
-        <dex dex="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/transforms/dex/baidu/debug/folders/1000/10/instant-run_9baa2d4f594171dc71a407516b369f3bb279602b/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.0"
-        sha1="f8efd0096475e0daf054267b61544e10dc776503">
-        <dex dex="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/transforms/dex/baidu/debug/folders/1000/10/com.android.support-support-v4-22.2.1_4272e511b19a118b5b6f7045314fd19d452cb155/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/zqwei/Documents/sdk/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.0"
-        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
-        <dex dex="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/transforms/dex/baidu/debug/folders/1000/10/support-annotations-22.2.1_a95881811edc901c12450ee66e23561e4beb9ea5/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
+        is-multidex="false"
         jar="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.0"
         sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
-        <dex dex="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/transforms/dex/baidu/debug/folders/1000/10/com.android.support-appcompat-v7-22.2.1_b1202b377734dc4a87bc0627ecd64d46a2c66116/classes.dex" />
+        <dex dex="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/pre-dexed/baidu/debug/com.android.support-appcompat-v7-22.2.1_b1202b377734dc4a87bc0627ecd64d46a2c66116.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.0"
+        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
+        <dex dex="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/pre-dexed/baidu/debug/internal_impl-22.2.1_3e6f2f806f8be7168d4f56d0314e77eed26512c4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/incremental-classes/baidu/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.0"
+        sha1="23ba93aba7fa2a6e0e4bb6dba9e2b042c943ca47">
+        <dex dex="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/pre-dexed/baidu/debug/instant-run-bootstrap_bffaca85a470538648ac25d085de2f1d5a6d7515.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.0"
+        sha1="f8efd0096475e0daf054267b61544e10dc776503">
+        <dex dex="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/pre-dexed/baidu/debug/com.android.support-support-v4-22.2.1_4272e511b19a118b5b6f7045314fd19d452cb155.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/incremental-runtime-classes/baidu/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.0"
+        sha1="b9f521bbbfa0d0741b060f132e51d8216e8a2387">
+        <dex dex="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/pre-dexed/baidu/debug/instant-run_9baa2d4f594171dc71a407516b369f3bb279602b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/zqwei/Documents/sdk/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.0"
+        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
+        <dex dex="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/pre-dexed/baidu/debug/support-annotations-22.2.1_a95881811edc901c12450ee66e23561e4beb9ea5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/zqwei/Downloads/PhoneNumberManager/app/libs/TalkingData_Analytics_Android_SDK_V2.2.37.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.0"
+        sha1="8356d4b85812b04943ab2ef480fe00cedf2ce67c">
+        <dex dex="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/pre-dexed/baidu/debug/TalkingData_Analytics_Android_SDK_V2.2.37_2976dfe597c22d8e4ef0191466da880464411d8e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/zqwei/Downloads/PhoneNumberManager/app/libs/YoumiSdk_v5.3.1_2015-12-30.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.0"
+        sha1="a472d815158675440fd497e376416b6779cf133e">
+        <dex dex="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/pre-dexed/baidu/debug/YoumiSdk_v5.3.1_2015-12-30_c8fac45067b9ab49d6fb7dc952f1eb7f69f5d21e.jar" />
     </item>
 
 </items>

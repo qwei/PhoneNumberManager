@@ -38,7 +38,7 @@ public class SettingActivity extends AppCompatActivity implements OnCheckedChang
 		context = this;
 		setContentView(R.layout.setting);
 		mToolbar = (Toolbar) findViewById(R.id.toolbar);
-		mToolbar.setTitle("设置");// 标题的文字需在setSupportActionBar之前，不然会无效
+		mToolbar.setTitle(context.getString(R.string.setting));// 标题的文字需在setSupportActionBar之前，不然会无效
 		setSupportActionBar(mToolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		StatusBarUtil.setColor(this, getResources().getColor(R.color.main_color));

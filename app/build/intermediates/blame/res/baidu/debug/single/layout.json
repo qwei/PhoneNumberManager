@@ -72,12 +72,12 @@
         "source": "/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/layout/abc_simple_dropdown_hint.xml"
     },
     {
-        "merged": "/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/res/merged/baidu/debug/layout/notification_template_lines.xml",
-        "source": "/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/layout/notification_template_lines.xml"
-    },
-    {
         "merged": "/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/res/merged/baidu/debug/layout/abc_list_menu_item_layout.xml",
         "source": "/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/layout/abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/res/merged/baidu/debug/layout/notification_template_lines.xml",
+        "source": "/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/layout/notification_template_lines.xml"
     },
     {
         "merged": "/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/res/merged/baidu/debug/layout/abc_action_mode_close_item_material.xml",
@@ -192,11 +192,11 @@
         "source": "/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/layout/notification_template_big_media.xml"
     },
     {
-        "merged": "/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/res/merged/baidu/debug/layout/abc_screen_toolbar.xml",
-        "source": "/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/layout/abc_screen_toolbar.xml"
-    },
-    {
         "merged": "/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/res/merged/baidu/debug/layout/notification_template_big_media_narrow.xml",
         "source": "/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/layout/notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/res/merged/baidu/debug/layout/abc_screen_toolbar.xml",
+        "source": "/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/layout/abc_screen_toolbar.xml"
     }
 ]

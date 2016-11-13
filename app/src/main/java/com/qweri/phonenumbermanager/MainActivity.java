@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 		setContentView(R.layout.activity_main);
 		StatusBarUtil.setColor(this, getResources().getColor(R.color.main_color));
 		mToolbar = (Toolbar) findViewById(R.id.toolbar);
-		mToolbar.setTitle("已拦截号码");// 标题的文字需在setSupportActionBar之前，不然会无效
+		mToolbar.setTitle(getString(R.string.blocked_number_des));// 标题的文字需在setSupportActionBar之前，不然会无效
 		setSupportActionBar(mToolbar);
 		initView();
 		

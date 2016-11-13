@@ -34,7 +34,7 @@ public class AllContactFragment extends Fragment implements View.OnClickListener
 	private List<ContactBean> contactList = new ArrayList<>();
 	private static final int WHAT_GET_ONE_PERSION = 0;
 
-//	private Context mContext;
+	private Context mContext;
 //	private LinearLayout mRequestLayout;
 //	private Button mRequestButton;
 
@@ -53,9 +53,10 @@ public class AllContactFragment extends Fragment implements View.OnClickListener
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-//		mContext = getContext();
+		mContext = getActivity();
 		View view = inflater.inflate(R.layout.all_contact, null);
 		mListView = (ListView) view.findViewById(R.id.all_contact_list);
+		mListView.setEmptyView(view.findViewById(R.id.empty_view));
 //		mRequestButton = (Button) view.findViewById(R.id.request_permission);
 //		mRequestButton.setOnClickListener(this);
 //		mRequestLayout = (LinearLayout) view.findViewById(R.id.request_layout);
@@ -92,8 +93,7 @@ public class AllContactFragment extends Fragment implements View.OnClickListener
 					return;
 				}
 				try {
-					ContentResolver resolver = getActivity().getApplicationContext()
-							.getContentResolver();
+					ContentResolver resolver = mContext.getContentResolver();
 					Cursor cursor = resolver.query(uri, new String[] { "_id" },
 							null, null, null);
 					ContactBean bean = null;
@@ -140,7 +140,7 @@ public class AllContactFragment extends Fragment implements View.OnClickListener
 					}
 
 				} catch (Exception e) {
-
+					e.printStackTrace();
 				}
 
 			}

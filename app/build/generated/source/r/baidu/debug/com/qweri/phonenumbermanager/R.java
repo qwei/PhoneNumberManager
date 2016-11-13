@@ -1759,15 +1759,19 @@ containing a value of this type.
         public static final int abc_shareactionprovider_share_with=0x7f05000b;
         public static final int abc_shareactionprovider_share_with_application=0x7f05000c;
         public static final int abc_toolbar_collapse_description=0x7f050010;
-        public static final int alive_notification_desc=0x7f050011;
-        public static final int alive_notification_title=0x7f050012;
-        public static final int app_name=0x7f050013;
-        public static final int request_permission=0x7f050014;
-        public static final int request_permission_des=0x7f050015;
-        public static final int setting_notification=0x7f050016;
-        public static final int status_bar_notification_info_overflow=0x7f050017;
-        public static final int tips=0x7f050018;
-        public static final int versionName=0x7f050019;
+        public static final int add_block_number=0x7f050011;
+        public static final int alive_notification_desc=0x7f050012;
+        public static final int alive_notification_title=0x7f050013;
+        public static final int app_name=0x7f050014;
+        public static final int blocked_number_des=0x7f050015;
+        public static final int no_contact=0x7f050016;
+        public static final int request_permission=0x7f050017;
+        public static final int request_permission_des=0x7f050018;
+        public static final int setting=0x7f050019;
+        public static final int setting_notification=0x7f05001a;
+        public static final int status_bar_notification_info_overflow=0x7f05001b;
+        public static final int tips=0x7f05001c;
+        public static final int versionName=0x7f05001d;
     }
     public static final class style {
         public static final int AlertDialog_AppCompat=0x7f070073;
@@ -1775,6 +1779,8 @@ containing a value of this type.
         public static final int Animation_AppCompat_Dialog=0x7f070075;
         public static final int Animation_AppCompat_DropDownUp=0x7f070076;
         public static final int AppBaseTheme=0x7f070077;
+        /**  All customizations that are NOT specific to a particular API-level can go here. 
+         */
         public static final int AppTheme=0x7f070078;
         public static final int Base_AlertDialog_AppCompat=0x7f070079;
         public static final int Base_AlertDialog_AppCompat_Light=0x7f07007a;
