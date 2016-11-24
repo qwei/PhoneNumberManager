@@ -1,0 +1,4 @@
+#Tue Nov 22 22:26:34 CST 2016
+base.0=/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/transforms/dex/ppzhushou/release/folders/1000/1f/main
+renamed.0=classes.dex
+file.0=/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/transforms/dex/ppzhushou/release/folders/1000/1f/main/classes.dex

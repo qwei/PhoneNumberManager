@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 		}
 		AdManager.getInstance(this).init("a6c6d83fa417ae12", "c0608df0ff8cd5ec", false);
 		initDuoMiAd();
+		loadADView();
 		NotifyManager.showKeepAliveNotification(this.getApplicationContext());
 	}
 

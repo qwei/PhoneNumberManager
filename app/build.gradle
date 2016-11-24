@@ -34,8 +34,10 @@ android {
         jifeng{}
         huawei{}
         samsung{}
-
-
+        _91{}
+        android{}
+        ppzhushou{}
+        gp{}
         productFlavors.all { flavor ->
             flavor.manifestPlaceholders = [TD_CHANNEL_ID_VALUE: name]
         }

@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/Users/zqwei/Downloads/PhoneNumberManager/app/src/main/jniLibs"/></dataSet><dataSet config="gp"><source path="/Users/zqwei/Downloads/PhoneNumberManager/app/src/gp/jniLibs"/></dataSet><dataSet config="release"><source path="/Users/zqwei/Downloads/PhoneNumberManager/app/src/release/jniLibs"/></dataSet><dataSet config="gpRelease"><source path="/Users/zqwei/Downloads/PhoneNumberManager/app/src/gpRelease/jniLibs"/></dataSet></merger>

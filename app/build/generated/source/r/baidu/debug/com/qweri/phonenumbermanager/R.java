@@ -1779,8 +1779,6 @@ containing a value of this type.
         public static final int Animation_AppCompat_Dialog=0x7f070075;
         public static final int Animation_AppCompat_DropDownUp=0x7f070076;
         public static final int AppBaseTheme=0x7f070077;
-        /**  All customizations that are NOT specific to a particular API-level can go here. 
-         */
         public static final int AppTheme=0x7f070078;
         public static final int Base_AlertDialog_AppCompat=0x7f070079;
         public static final int Base_AlertDialog_AppCompat_Light=0x7f07007a;

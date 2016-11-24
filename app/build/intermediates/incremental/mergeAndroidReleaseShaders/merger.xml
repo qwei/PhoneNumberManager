@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/Users/zqwei/Downloads/PhoneNumberManager/app/src/main/shaders"/></dataSet><dataSet config="android"><source path="/Users/zqwei/Downloads/PhoneNumberManager/app/src/android/shaders"/></dataSet><dataSet config="release"><source path="/Users/zqwei/Downloads/PhoneNumberManager/app/src/release/shaders"/></dataSet><dataSet config="androidRelease"><source path="/Users/zqwei/Downloads/PhoneNumberManager/app/src/androidRelease/shaders"/></dataSet></merger>
