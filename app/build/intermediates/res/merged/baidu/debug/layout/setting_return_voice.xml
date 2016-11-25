@@ -33,8 +33,8 @@
             android:text="暂时无法接通"
             android:textSize="@dimen/title_size"
             android:textColor="#bb333333"
-            android:button="@null"
-            android:drawableRight="@android:drawable/btn_radio"
+            android:button="@drawable/abc_btn_radio_material"
+            android:buttonTint="@color/main_color"
             />
         
         <RadioButton android:id="@+id/button2"
@@ -43,8 +43,8 @@
             android:text="号码是空号"
             android:textSize="@dimen/title_size"
             android:textColor="#bb333333"
-            android:button="@null"
-            android:drawableRight="@android:drawable/btn_radio"
+            android:button="@drawable/abc_btn_radio_material"
+            android:buttonTint="@color/main_color"
             />
         <RadioButton android:id="@+id/button3"
             android:layout_width="match_parent"
@@ -52,8 +52,8 @@
             android:text="直接挂断"
             android:textSize="@dimen/title_size"
             android:textColor="#bb333333"
-            android:button="@null"
-            android:drawableRight="@android:drawable/btn_radio"
+            android:button="@drawable/abc_btn_radio_material"
+            android:buttonTint="@color/main_color"
             />
         <RadioButton android:id="@+id/button4"
             android:layout_width="match_parent"
@@ -61,8 +61,8 @@
             android:text="默认"
             android:textSize="@dimen/title_size"
             android:textColor="#bb333333"
-            android:button="@null"
-            android:drawableRight="@android:drawable/btn_radio"
+            android:button="@drawable/abc_btn_radio_material"
+            android:buttonTint="@color/main_color"
             />
     </RadioGroup>
 

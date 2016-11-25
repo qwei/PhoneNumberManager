@@ -1,11 +1,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/main_color"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true"
-    tools:context="com.qweri.phonenumbermanager.MainActivity" >
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:background="@color/main_color"
+              android:orientation="vertical"
+              android:fitsSystemWindows="true"
+              tools:context="com.qweri.phonenumbermanager.MainActivity">
 
     <android.support.v7.widget.Toolbar
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -18,6 +19,19 @@
         android:minHeight="?attr/actionBarSize">
     </android.support.v7.widget.Toolbar>
 
+    <com.qweri.phonenumbermanager.widget.NavigationTabStrip
+        android:id="@+id/tab_strip"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        app:nts_active_color="#ffffff"
+        app:nts_color="#ffffff"
+        app:nts_factor="2.8"
+        app:nts_corners_radius="1.5dp"
+        app:nts_inactive_color="#81ffffff"
+        app:nts_titles="@array/titles"
+        app:nts_weight="3dp"/>
+
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
@@ -26,14 +40,14 @@
         android:layout_weight="1"
         android:background="#00bc9f">
 
-        <android.support.v4.view.PagerTabStrip
+        <!--<android.support.v4.view.PagerTabStrip
             android:id="@+id/page_tab_strip"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_gravity="top"
             android:textDirection="firstStrong"
             >
-        </android.support.v4.view.PagerTabStrip>
+        </android.support.v4.view.PagerTabStrip>-->
     </android.support.v4.view.ViewPager>
 
     <LinearLayout

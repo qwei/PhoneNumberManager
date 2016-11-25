@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Users/zqwei/Downloads/PhoneNumberManager/app/src/main/jniLibs"/></dataSet><dataSet config="smartisan"><source path="/Users/zqwei/Downloads/PhoneNumberManager/app/src/smartisan/jniLibs"/></dataSet><dataSet config="release"><source path="/Users/zqwei/Downloads/PhoneNumberManager/app/src/release/jniLibs"/></dataSet><dataSet config="smartisanRelease"><source path="/Users/zqwei/Downloads/PhoneNumberManager/app/src/smartisanRelease/jniLibs"/></dataSet></merger>

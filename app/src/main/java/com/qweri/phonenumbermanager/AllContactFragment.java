@@ -22,12 +22,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class AllContactFragment extends Fragment implements View.OnClickListener{
+public class AllContactFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener{
 
 	private ListView mListView;
 	private AllContactAdapter allContactAdapter;
@@ -35,9 +36,6 @@ public class AllContactFragment extends Fragment implements View.OnClickListener
 	private static final int WHAT_GET_ONE_PERSION = 0;
 
 	private Context mContext;
-//	private LinearLayout mRequestLayout;
-//	private Button mRequestButton;
-
 
 	Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -57,9 +55,7 @@ public class AllContactFragment extends Fragment implements View.OnClickListener
 		View view = inflater.inflate(R.layout.all_contact, null);
 		mListView = (ListView) view.findViewById(R.id.all_contact_list);
 		mListView.setEmptyView(view.findViewById(R.id.empty_view));
-//		mRequestButton = (Button) view.findViewById(R.id.request_permission);
-//		mRequestButton.setOnClickListener(this);
-//		mRequestLayout = (LinearLayout) view.findViewById(R.id.request_layout);
+		mListView.setOnItemClickListener(this);
 		allContactAdapter = new AllContactAdapter(getActivity(), contactList);
 		mListView.setAdapter(allContactAdapter);
 		getAllContact();
@@ -67,23 +63,17 @@ public class AllContactFragment extends Fragment implements View.OnClickListener
 	}
 
 	@Override
-	public void onResume() {
-		super.onResume();
-		Log.d("zqwei", "onResume.....");
-//		checkPermission();
+	public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+		ContactBean contactBean = contactList.get(i);
+		contactBean.setInBlackList(!contactBean.isInBlackList());
+		if(contactBean.isInBlackList()) {
+			BlackListUtils.addNumber(mContext, contactBean.getTelephone());
+		} else {
+			BlackListUtils.deleteNumber(mContext, contactBean.getTelephone());
+		}
+		allContactAdapter.notifyDataSetChanged();
 	}
 
-//	private void checkPermission() {
-//		if(ContextCompat.checkSelfPermission(mContext.getApplicationContext(),
-//				Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
-//			mRequestLayout.setVisibility(View.VISIBLE);
-//			mListView.setVisibility(View.GONE);
-//		} else {
-//			mRequestLayout.setVisibility(View.VISIBLE);
-//			mListView.setVisibility(View.GONE);
-//		}
-//	}
-	
 	private void getAllContact() {
 		new Thread(new Runnable() {
 			@Override

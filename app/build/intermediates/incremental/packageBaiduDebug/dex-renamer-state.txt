@@ -1,4 +1,4 @@
-#Thu Nov 24 22:49:33 CST 2016
+#Sat Nov 26 00:18:27 CST 2016
 base.0=/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/transforms/dex/baidu/debug/folders/1000/10/instant-run_9baa2d4f594171dc71a407516b369f3bb279602b
 renamed.1=classes.dex
 renamed.0=classes2.dex

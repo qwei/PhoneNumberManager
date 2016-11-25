@@ -20,10 +20,6 @@
         "source": "/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/drawable/abc_item_background_holo_light.xml"
     },
     {
-        "merged": "/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/res/merged/baidu/debug/drawable/checkbox_selector.xml",
-        "source": "/Users/zqwei/Downloads/PhoneNumberManager/app/src/main/res/drawable/checkbox_selector.xml"
-    },
-    {
         "merged": "/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/res/merged/baidu/debug/drawable/abc_cab_background_top_material.xml",
         "source": "/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/drawable/abc_cab_background_top_material.xml"
     },
@@ -42,6 +38,10 @@
     {
         "merged": "/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/res/merged/baidu/debug/drawable/abc_list_selector_background_transition_holo_light.xml",
         "source": "/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/drawable/abc_list_selector_background_transition_holo_light.xml"
+    },
+    {
+        "merged": "/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/res/merged/baidu/debug/drawable/selector_bg.xml",
+        "source": "/Users/zqwei/Downloads/PhoneNumberManager/app/src/main/res/drawable/selector_bg.xml"
     },
     {
         "merged": "/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/res/merged/baidu/debug/drawable/abc_textfield_search_material.xml",

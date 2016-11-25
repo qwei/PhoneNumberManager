@@ -14,6 +14,7 @@ import android.view.View.OnClickListener;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,12 +32,18 @@ public class SettingActivity extends AppCompatActivity implements OnCheckedChang
 	private LinearLayout mVoiceSettingLayout;
 	private TextView mVoiceView;
 	private Toolbar mToolbar;
+	private LinearLayout mNotificationLayout, mBlockAllLayout, mBlockNoneContactLayout;
+	private FrameLayout mSmartBlockLayout;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		context = this;
 		setContentView(R.layout.setting);
+		initView();
+	}
+
+	private void initView() {
 		mToolbar = (Toolbar) findViewById(R.id.toolbar);
 		mToolbar.setTitle(context.getString(R.string.setting));// 标题的文字需在setSupportActionBar之前，不然会无效
 		setSupportActionBar(mToolbar);
@@ -51,8 +58,15 @@ public class SettingActivity extends AppCompatActivity implements OnCheckedChang
 		notificationCheckout = (CheckBox) findViewById(R.id.notification_checkbox);
 		notificationCheckout.setOnCheckedChangeListener(this);
 		notificationCheckout.setChecked(SharedPreferenceUtils.isShowAliveNotification(context));
-		
-		
+		mBlockAllLayout = (LinearLayout) findViewById(R.id.intercept_all_layout);
+		mBlockNoneContactLayout = (LinearLayout) findViewById(R.id.intercept_unknow_layout);
+		mNotificationLayout = (LinearLayout) findViewById(R.id.notification_layout);
+		mSmartBlockLayout = (FrameLayout) findViewById(R.id.auto_block_layout);
+		mSmartBlockLayout.setOnClickListener(this);
+		mNotificationLayout.setOnClickListener(this);
+		mBlockAllLayout.setOnClickListener(this);
+		mBlockNoneContactLayout.setOnClickListener(this);
+
 		share = (TextView) findViewById(R.id.share);
 		about = (TextView) findViewById(R.id.about);
 		feedback = (TextView) findViewById(R.id.feedback);
@@ -62,13 +76,12 @@ public class SettingActivity extends AppCompatActivity implements OnCheckedChang
 		interceptAll.setOnCheckedChangeListener(this);
 		interceptUnknow.setOnCheckedChangeListener(this);
 		autoBlock.setOnCheckedChangeListener(this);
-		
+
 		share.setOnClickListener(this);
 		about.setOnClickListener(this);
 		feedback.setOnClickListener(this);
-		
 	}
-	
+
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
@@ -136,6 +149,18 @@ public class SettingActivity extends AppCompatActivity implements OnCheckedChang
 		case R.id.voice_setting_layout:
 			Intent intent = new Intent(this, SetReturnVoiceActivity.class);
 			startActivity(intent);
+			break;
+		case R.id.intercept_all_layout:
+			interceptAll.setChecked(!interceptAll.isChecked());
+			break;
+		case R.id.intercept_unknow_layout:
+			interceptUnknow.setChecked(!interceptUnknow.isChecked());
+			break;
+		case R.id.notification_layout:
+			notificationCheckout.setChecked(!notificationCheckout.isChecked());
+			break;
+		case R.id.auto_block_layout:
+			autoBlock.setChecked(!autoBlock.isChecked());
 			break;
 		}
 	}

@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.widget.LinearLayout;
 
 import com.qweri.phonenumbermanager.utils.StatusBarUtil;
+import com.qweri.phonenumbermanager.widget.NavigationTabStrip;
 import com.tendcloud.tenddata.TCAgent;
 
 import er.kj.iy.br.AdSize;
@@ -28,12 +29,12 @@ public class AddBlockNumberActivity extends AppCompatActivity{
 	private static final String TAG = AddBlockNumberActivity.class.getName();
 
 	private ViewPager mViewPager;
-	private String[] mTitleList = new String[3];
+//	private String[] mTitleList = new String[3];
 	private Fragment mCallLogFragment = null;
 	private Fragment mAllContactFragment = null;
 	private Fragment mManualAddFragment = null;
 	private Toolbar mToolbar;
-	private PagerTabStrip mTabStrip;
+	private NavigationTabStrip mTabStrip;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,20 +46,22 @@ public class AddBlockNumberActivity extends AppCompatActivity{
 		setSupportActionBar(mToolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		mViewPager = (ViewPager) findViewById(R.id.viewpager);
-		mTabStrip = (PagerTabStrip) findViewById(R.id.page_tab_strip);
-		mTabStrip.setTabIndicatorColor(Color.WHITE);
-		mTabStrip.setTextColor(Color.WHITE);
-		mTabStrip.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-		mTitleList[1] = "通讯录";
-		mTitleList[2] = "历史记录";
-		mTitleList[0] = "手动添加";
+		mTabStrip = (NavigationTabStrip) findViewById(R.id.tab_strip);
+
+//		mTabStrip.setTabIndicatorColor(Color.WHITE);
+//		mTabStrip.setTextColor(Color.WHITE);
+//		mTabStrip.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+//		mTitleList[1] = "通讯录";
+//		mTitleList[2] = "历史记录";
+//		mTitleList[0] = "手动添加";
 		mCallLogFragment = new CallLogsFragment();
 		mAllContactFragment = new AllContactFragment();
 		mManualAddFragment = new ManualAddFragment();
 		
 		mViewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
 		mViewPager.setOffscreenPageLimit(3);
-		mViewPager.setCurrentItem(1);
+//		mViewPager.setCurrentItem(1);
+		mTabStrip.setViewPager(mViewPager, 1);
 	}
 	
 	private void loadADView(){
@@ -121,10 +124,10 @@ public class AddBlockNumberActivity extends AppCompatActivity{
 			return 3;
 		}
 		
-		@Override
-		public CharSequence getPageTitle(int position) {
-			return mTitleList[position];
-		}
+//		@Override
+//		public CharSequence getPageTitle(int position) {
+//			return mTitleList[position];
+//		}
 		
 	}
 

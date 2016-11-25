@@ -16,4 +16,10 @@
     <string name="blocked_number_des">已拦截号码</string>
     <string name="add_block_number">添加拦截号码</string>
     <string name="no_contact">没有内容，或者读取失败，如果读取失败，重启应用试一下吧～</string>
+
+    <array name="titles">
+        <item>手动添加</item>
+        <item>通讯录</item>
+        <item>历史记录</item>
+    </array>
 </resources>

@@ -5,33 +5,47 @@
     density="xxhdpi"
     format="8"
     plugin-version="2.2.1"
-    timestamp="17130852323363"
+    timestamp="27982339337837"
     token="-8727990532136001989"
-    verifier="FULL_BUILD_REQUESTED" >
+    verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="2965" />
+        duration="0" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="560" />
+        duration="0" />
     <task
         name="verifier"
-        duration="4" />
+        duration="0" />
 
     <artifact
-        location="/Users/zqwei/Downloads/PhoneNumberManager/app/build/outputs/apk/app-baidu-debug.apk"
-        type="MAIN" />
+        location="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/instant-run-resources/resources-baidu/debug.ir.ap_"
+        type="RESOURCES" />
 
     <build
-        timestamp="169777724838346"
+        timestamp="27770138802004"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="/Users/zqwei/Downloads/PhoneNumberManager/app/build/outputs/apk/app-baidu-debug.apk"
             type="MAIN" />
+    </build>
+    <build
+        timestamp="27893167265832"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/transforms/dex/baidu/debug/folders/1000/5/slice_0/classes.dex"
+            type="DEX" />
+    </build>
+    <build
+        timestamp="27982339337837"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="/Users/zqwei/Downloads/PhoneNumberManager/app/build/intermediates/instant-run-resources/resources-baidu/debug.ir.ap_"
+            type="RESOURCES" />
     </build>
 
 </instant-run>
