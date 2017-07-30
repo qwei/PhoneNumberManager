@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 		super.onStop();
 		TCAgent.onPageEnd(this, TAG);
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();

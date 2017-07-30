@@ -34,7 +34,7 @@ public class SettingActivity extends AppCompatActivity implements OnCheckedChang
 	private Toolbar mToolbar;
 	private LinearLayout mNotificationLayout, mBlockAllLayout, mBlockNoneContactLayout;
 	private FrameLayout mSmartBlockLayout;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -164,7 +164,7 @@ public class SettingActivity extends AppCompatActivity implements OnCheckedChang
 			break;
 		}
 	}
-	
+
 	private void about() {
 		new AlertDialog.Builder(context).setMessage("V "+getString(R.string.versionName)).setNeutralButton("确定", new DialogInterface.OnClickListener(){
 
@@ -172,19 +172,19 @@ public class SettingActivity extends AppCompatActivity implements OnCheckedChang
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.dismiss();
 			}
-			
+
 		}).create().show();
 	}
-	
+
 	private void share() {
-		Intent intent=new Intent(Intent.ACTION_SEND);   
-        intent.setType("text/plain");   
-        intent.putExtra(Intent.EXTRA_SUBJECT, "来电拦截");   
-        intent.putExtra(Intent.EXTRA_TEXT, "<来电拦截>小巧强大，支持从通讯录和来电纪录中添加号码。http://a.app.qq.com/o/simple.jsp?pkgname=com.qweri.phonenumbermanager");    
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);   
-        startActivity(Intent.createChooser(intent, getTitle())); 
+		Intent intent=new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "来电拦截");
+        intent.putExtra(Intent.EXTRA_TEXT, "<来电拦截>小巧强大，支持从通讯录和来电纪录中添加号码。http://a.app.qq.com/o/simple.jsp?pkgname=com.qweri.phonenumbermanager");
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(Intent.createChooser(intent, getTitle()));
 	}
-	
+
 	private void feedback(Context context) {
 		try {
 			Intent intentFeedback = new Intent(Intent.ACTION_SENDTO);
