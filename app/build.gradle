@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "23.0.0"
+    compileSdkVersion 24
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "com.qweri.phonenumbermanager"
@@ -45,8 +45,15 @@ android {
     }
 }
 
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:support-v4:22.2.1'
-    compile 'com.android.support:appcompat-v7:22.2.1'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile(name: 'YoumiSdk_v7.5.0_2017-07-18', ext: 'aar')
+    compile 'com.android.support:support-v4:24.0.0'
+    compile 'com.android.support:appcompat-v7:24.0.0'
 }

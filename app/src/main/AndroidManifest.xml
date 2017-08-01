@@ -19,8 +19,10 @@
         android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
         <activity
-            android:name=".MainActivity"
+            android:name=".widget.SplashActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:launchMode="singleTask">
@@ -30,6 +32,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask">
+        </activity>
+
         <activity android:name=".TipsActivity"/>
         <service android:name=".InterceptService"></service>
         <service android:name=".CoreService"
@@ -45,24 +54,6 @@
         </receiver>
         <meta-data android:name="TD_APP_ID" android:value="90C61879680480AEFB0A4FA2D0FF4A37" />
   <meta-data android:name="TD_CHANNEL_ID" android:value="${TD_CHANNEL_ID_VALUE}" />
-
-        
-        <activity
-		    android:name="er.kj.iy.SD"
-		    android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-		    android:theme="@android:style/Theme.Light.NoTitleBar" >
-		</activity>
-		<service
-		    android:name="er.kj.iy.QW"
-		    android:exported="false" >
-		</service>
-		<receiver
-		    android:name="er.kj.iy.VB" >
-		    <intent-filter>
-		        <action android:name="android.intent.action.PACKAGE_ADDED" />
-		        <data android:scheme="package" />
-		    </intent-filter>
-		</receiver>
 
     </application>
 

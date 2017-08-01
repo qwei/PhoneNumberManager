@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="libs_daemon-1.0.0-r">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/libs_daemon-1.0.0-r.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

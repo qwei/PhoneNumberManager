@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <string name="app_name" translatable="false">来电拦截</string>
-    <string name="version_name" translatable="false">1.2.2</string>
-
-</resources>

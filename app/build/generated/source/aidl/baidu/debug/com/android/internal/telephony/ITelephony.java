@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: /Users/zqwei/Downloads/PhoneNumberManager/app/src/main/aidl/com/android/internal/telephony/ITelephony.aidl
+ * Original file: /Users/yangguixue/Documents/snowPro/PhoneNumberManager/app/src/main/aidl/com/android/internal/telephony/ITelephony.aidl
  */
 package com.android.internal.telephony;
 //import com.FrameSpeed.NeighboringCellInfo;     
@@ -847,9 +847,6 @@ _reply.recycle();
 _data.recycle();
 }
 }
-/**    
-     * Enable a specific APN type.    
-     */
 @Override public int enableApnType(java.lang.String type) throws android.os.RemoteException
 {
 android.os.Parcel _data = android.os.Parcel.obtain();
@@ -868,9 +865,6 @@ _data.recycle();
 }
 return _result;
 }
-/**    
-     * Disable a specific APN type.    
-     */
 @Override public int disableApnType(java.lang.String type) throws android.os.RemoteException
 {
 android.os.Parcel _data = android.os.Parcel.obtain();
@@ -1042,11 +1036,6 @@ _data.recycle();
 }
 return _result;
 }
-/**    
-     * Returns the current active phone type as integer.    
-     * Returns TelephonyManager.PHONE_TYPE_CDMA if RILConstants.CDMA_PHONE    
-     * and TelephonyManager.PHONE_TYPE_GSM if RILConstants.GSM_PHONE    
-     */
 @Override public int getActivePhoneType() throws android.os.RemoteException
 {
 android.os.Parcel _data = android.os.Parcel.obtain();
@@ -1064,9 +1053,6 @@ _data.recycle();
 }
 return _result;
 }
-/**    
-     * Returns the CDMA ERI icon index to display    
-     */
 @Override public int getCdmaEriIconIndex() throws android.os.RemoteException
 {
 android.os.Parcel _data = android.os.Parcel.obtain();
@@ -1084,11 +1070,6 @@ _data.recycle();
 }
 return _result;
 }
-/**    
-     * Returns the CDMA ERI icon mode,    
-     * 0 - ON    
-     * 1 - FLASHING    
-     */
 @Override public int getCdmaEriIconMode() throws android.os.RemoteException
 {
 android.os.Parcel _data = android.os.Parcel.obtain();
@@ -1148,9 +1129,6 @@ _data.recycle();
 }
 return _result;
 }
-/**    
-      * Returns the unread count of voicemails    
-      */
 @Override public int getVoiceMessageCount() throws android.os.RemoteException
 {
 android.os.Parcel _data = android.os.Parcel.obtain();
@@ -1168,9 +1146,6 @@ _data.recycle();
 }
 return _result;
 }
-/**    
-      * Returns the network type    
-      */
 @Override public int getNetworkType() throws android.os.RemoteException
 {
 android.os.Parcel _data = android.os.Parcel.obtain();
@@ -1382,13 +1357,7 @@ public void enableLocationUpdates() throws android.os.RemoteException;
      * Disable location update notifications.    
      */
 public void disableLocationUpdates() throws android.os.RemoteException;
-/**    
-     * Enable a specific APN type.    
-     */
 public int enableApnType(java.lang.String type) throws android.os.RemoteException;
-/**    
-     * Disable a specific APN type.    
-     */
 public int disableApnType(java.lang.String type) throws android.os.RemoteException;
 /**    
      * Allow mobile data connections.    
@@ -1410,21 +1379,8 @@ public java.util.List<android.telephony.NeighboringCellInfo> getNeighboringCellI
 public int getCallState() throws android.os.RemoteException;
 public int getDataActivity() throws android.os.RemoteException;
 public int getDataState() throws android.os.RemoteException;
-/**    
-     * Returns the current active phone type as integer.    
-     * Returns TelephonyManager.PHONE_TYPE_CDMA if RILConstants.CDMA_PHONE    
-     * and TelephonyManager.PHONE_TYPE_GSM if RILConstants.GSM_PHONE    
-     */
 public int getActivePhoneType() throws android.os.RemoteException;
-/**    
-     * Returns the CDMA ERI icon index to display    
-     */
 public int getCdmaEriIconIndex() throws android.os.RemoteException;
-/**    
-     * Returns the CDMA ERI icon mode,    
-     * 0 - ON    
-     * 1 - FLASHING    
-     */
 public int getCdmaEriIconMode() throws android.os.RemoteException;
 /**    
      * Returns the CDMA ERI text,    
@@ -1436,13 +1392,7 @@ public java.lang.String getCdmaEriText() throws android.os.RemoteException;
      * return false.    
      */
 public boolean needsOtaServiceProvisioning() throws android.os.RemoteException;
-/**    
-      * Returns the unread count of voicemails    
-      */
 public int getVoiceMessageCount() throws android.os.RemoteException;
-/**    
-      * Returns the network type    
-      */
 public int getNetworkType() throws android.os.RemoteException;
 /**    
      * Return true if an ICC card is present    

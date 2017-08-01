@@ -15,6 +15,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ImageView;
@@ -26,280 +30,297 @@ import com.qweri.phonenumbermanager.adapter.BlackListViewAdapter;
 import com.qweri.phonenumbermanager.utils.StatusBarUtil;
 import com.tendcloud.tenddata.TCAgent;
 
+import net.youmi.android.nm.cm.ErrorCode;
+import net.youmi.android.nm.sp.SplashViewSettings;
+import net.youmi.android.nm.sp.SpotListener;
+import net.youmi.android.nm.sp.SpotManager;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import er.kj.iy.AdManager;
-import er.kj.iy.br.AdSize;
-import er.kj.iy.br.AdView;
-import er.kj.iy.st.SpotDialogListener;
-import er.kj.iy.st.SpotManager;
-
 public class MainActivity extends AppCompatActivity implements OnClickListener {
 
-	private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = MainActivity.class.getSimpleName();
 
-	private ListView blackListView;
-	private BlackListViewAdapter blackListViewAdapter;
-	private ImageView mAdd;
-	private Toolbar mToolbar;
-	private ImageView mEmptyView;
-	private List<ItemBean> blackList;
-	
+    private ListView blackListView;
+    private BlackListViewAdapter blackListViewAdapter;
+    private ImageView mAdd;
+    private Toolbar mToolbar;
+    private ImageView mEmptyView;
+    private List<ItemBean> blackList;
+    boolean mIsShowSpotAd = false;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		StatusBarUtil.setColor(this, getResources().getColor(R.color.main_color));
-		mToolbar = (Toolbar) findViewById(R.id.toolbar);
-		mToolbar.setTitle(getString(R.string.blocked_number_des));// 标题的文字需在setSupportActionBar之前，不然会无效
-		setSupportActionBar(mToolbar);
-		initView();
-		
-		Intent service = new Intent(this, InterceptService.class);
-		startService(service);
-		if(getIntent().getBooleanExtra(InterceptService.EXTRA_CLICKED_NOTIFY, false)) {
-			NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-			mNotificationManager.cancel(NotifyManager.NOTIFICATION_ID_ALART);
-		}
-		AdManager.getInstance(this).init("a6c6d83fa417ae12", "c0608df0ff8cd5ec", false);
-		initDuoMiAd();
-		loadADView();
-		NotifyManager.showKeepAliveNotification(this.getApplicationContext());
-	}
 
-	private void initDuoMiAd() {
-		SpotManager.getInstance(this).loadSpotAds();
-		SpotManager.getInstance(this).showSpotAds(this);
-		SpotManager.getInstance(this).showSpotAds(this, new SpotDialogListener() {
-		    @Override
-		    public void onShowSuccess() {
-		        Log.i("Youmi", "onShowSuccess");
-		    }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        StatusBarUtil.setColor(this, getResources().getColor(R.color.main_color));
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar.setTitle(getString(R.string.blocked_number_des));// 标题的文字需在setSupportActionBar之前，不然会无效
+        setSupportActionBar(mToolbar);
+        initView();
 
-		    @Override
-		    public void onShowFailed() {
-		        Log.i("Youmi", "onShowFailed");
-		    }
+        Intent service = new Intent(this, InterceptService.class);
+        startService(service);
+        if (getIntent().getBooleanExtra(InterceptService.EXTRA_CLICKED_NOTIFY, false)) {
+            NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            mNotificationManager.cancel(NotifyManager.NOTIFICATION_ID_ALART);
+        }
+        NotifyManager.showKeepAliveNotification(this.getApplicationContext());
+    }
 
-		    @Override
-		    public void onSpotClosed() {
-		        Log.e("sdkDemo", "closed");
-		    }
+    @SuppressLint("NewApi")
+    private void initView() {
+        mEmptyView = (ImageView) findViewById(R.id.empty_view);
+        blackListView = (ListView) findViewById(R.id.black_list_view);
+
+        blackListView.setOnItemLongClickListener(new OnItemLongClickListener() {
 
             @Override
-            public void onSpotClick(boolean isWebPath) {
-                Log.i("YoumiAdDemo", "插屏点击");
+            public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+                                           int arg2, long arg3) {
+                showDeleteDialog(arg2);
+                return false;
             }
-		});
-	}
-	
-	private void loadADView(){
-		// 实例化广告条
-		AdView adView = new AdView(this, AdSize.FIT_SCREEN);
+        });
+        blackListView.setEmptyView(mEmptyView);
+        mAdd = (ImageView) findViewById(R.id.add);
+        mAdd.setOnClickListener(this);
+        setButtonAnim(mAdd);
+    }
 
-		// 获取要嵌入广告条的布局
-		LinearLayout adLayout=(LinearLayout)findViewById(R.id.adLayout);
+    private void setButtonAnim(View view){
+        final Animation animation = new AlphaAnimation(1, 0);
+        animation.setDuration(500);
+        animation.setInterpolator(new LinearInterpolator());
+        animation.setRepeatCount(Animation.INFINITE);
+        animation.setRepeatMode(Animation.REVERSE);
+        view.startAnimation(animation);
+    }
 
-		// 将广告条加入到布局中
-		adLayout.addView(adView);
+    private void showDeleteDialog(final int position) {
+        new AlertDialog.Builder(this)
+                .setMessage("不拦截此号码了？")
+                .setPositiveButton("是", new DialogInterface.OnClickListener() {
 
-	}
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        BlackListUtils.deleteNumber(MainActivity.this,
+                                blackList.get(position).number);
+                        blackList.remove(position);
+                        blackListViewAdapter.notifyDataSetChanged();
+                        dialog.dismiss();
+                    }
 
-	@Override
-	protected void onStop() {
-		super.onStop();
-		TCAgent.onPageEnd(this, TAG);
-	}
+                })
+                .setNegativeButton("否", new DialogInterface.OnClickListener() {
 
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-//		Log.d("ttt", "ondestory");
-		Intent intent = new Intent(this, CoreService.class);
-		startService(intent);
-	}
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
 
-	private Menu mMenu;
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		mMenu = menu;
-		MenuItem m1 = mMenu.add(0, 1, 0, "").setIcon(R.drawable.tips);
-		MenuItem m2 = mMenu.add(0, 2, 0, "").setIcon(R.drawable.delete);
-		MenuItem m3 = mMenu.add(0, 3, 0, "").setIcon(R.drawable.menu_settings);
-		MenuItemCompat
-				.setShowAsAction(m1, MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
-		MenuItemCompat
-				.setShowAsAction(m2, MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
-		MenuItemCompat
-				.setShowAsAction(m3, MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
-		return true;
-	}
-	
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-			case 1:
-				Intent tipsIntent = new Intent(MainActivity.this,TipsActivity.class);
-				startActivity(tipsIntent);
-				break;
-			case 2:
-				new AlertDialog.Builder(this).setMessage("要清空所有纪录？").setPositiveButton("是", new DialogInterface.OnClickListener(){
+                }).show();
+    }
 
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						BlackListUtils.resetNumber(MainActivity.this);
-						if(blackList != null) {
-							blackList.clear();
-							if(blackListViewAdapter != null) {
-								blackListViewAdapter.notifyDataSetChanged();
-							}
-						}
+    private List<ItemBean> getBlackList() {
+        List<ItemBean> result = new ArrayList<ItemBean>();
+        String blackListString = BlackListUtils.getBlackListNumbers(this);
 
-					}
+        String[] blackList = blackListString.split(BlackListUtils.SPLIT);
 
-				}).setNegativeButton("否", new DialogInterface.OnClickListener(){
+        for (String str : blackList) {
+            if (!"".equals(str)) {
+                ItemBean itemBean = new ItemBean();
+                itemBean.number = str;
+                itemBean.name = CallLogsFragment.getContactNameByPhoneNumber(this, str);
+                result.add(itemBean);
+            }
+        }
+        return result;
+    }
 
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.dismiss();
-					}
+    public class ItemBean {
+        public String number;
+        public String name;
+    }
 
-				}).create().show();
-				break;
-			case 3:
-				Intent settingIntent = new Intent(MainActivity.this,SettingActivity.class);
-				startActivity(settingIntent);
-				break;
-		}
 
-		return super.onOptionsItemSelected(item);
-	}
-	@Override
-	protected void onResume() {
-		blackList = getBlackList();
-		blackListViewAdapter = new BlackListViewAdapter(this, blackList);
-		blackListView.setAdapter(blackListViewAdapter);
-		super.onResume();
-		TCAgent.onPageStart(this, TAG);
-	}
+    @Override
+    public void onClick(View v) {
+        int viewId = v.getId();
+        switch (viewId) {
+            case R.id.add:
+                v.clearAnimation();
+                if (mIsShowSpotAd) {
+                    Intent intent = new Intent(MainActivity.this,
+                            AddBlockNumberActivity.class);
+                    startActivity(intent);
+                } else {
+                    setupSpotAd();
+                    mIsShowSpotAd = true;
+                }
+                break;
+        }
+    }
 
-	@SuppressLint("NewApi")
-	private void initView() {
-		mEmptyView = (ImageView) findViewById(R.id.empty_view);
-		blackListView = (ListView) findViewById(R.id.black_list_view);
+    private Menu mMenu;
 
-		blackListView.setOnItemLongClickListener(new OnItemLongClickListener() {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        mMenu = menu;
+        MenuItem m1 = mMenu.add(0, 1, 0, "").setIcon(R.drawable.tips);
+        MenuItem m2 = mMenu.add(0, 2, 0, "").setIcon(R.drawable.delete);
+        MenuItem m3 = mMenu.add(0, 3, 0, "").setIcon(R.drawable.menu_settings);
+        MenuItemCompat
+                .setShowAsAction(m1, MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
+        MenuItemCompat
+                .setShowAsAction(m2, MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
+        MenuItemCompat
+                .setShowAsAction(m3, MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
+        return true;
+    }
 
-			@Override
-			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
-										   int arg2, long arg3) {
-				showDeleteDialog(arg2);
-				return false;
-			}
-		});
-		blackListView.setEmptyView(mEmptyView);
-		mAdd = (ImageView) findViewById(R.id.add);
-		mAdd.setOnClickListener(this);
-		
-	}
-	
-	private void showDeleteDialog(final int position) {
-		new AlertDialog.Builder(this)
-				.setMessage("不拦截此号码了？")
-				.setPositiveButton("是", new DialogInterface.OnClickListener() {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case 1:
+                Intent tipsIntent = new Intent(MainActivity.this, TipsActivity.class);
+                startActivity(tipsIntent);
+                break;
+            case 2:
+                new AlertDialog.Builder(this).setMessage("要清空所有纪录？").setPositiveButton("是", new DialogInterface.OnClickListener() {
 
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						BlackListUtils.deleteNumber(MainActivity.this,
-								blackList.get(position).number);
-						blackList.remove(position);
-						blackListViewAdapter.notifyDataSetChanged();
-						dialog.dismiss();
-					}
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        BlackListUtils.resetNumber(MainActivity.this);
+                        if (blackList != null) {
+                            blackList.clear();
+                            if (blackListViewAdapter != null) {
+                                blackListViewAdapter.notifyDataSetChanged();
+                            }
+                        }
 
-				})
-				.setNegativeButton("否", new DialogInterface.OnClickListener() {
+                    }
 
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.dismiss();
-					}
+                }).setNegativeButton("否", new DialogInterface.OnClickListener() {
 
-				}).show();
-	}
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
 
-	private List<ItemBean> getBlackList() {
-		List<ItemBean> result = new ArrayList<ItemBean>();
-		String blackListString = BlackListUtils.getBlackListNumbers(this);
+                }).create().show();
+                break;
+            case 3:
+                Intent settingIntent = new Intent(MainActivity.this, SettingActivity.class);
+                startActivity(settingIntent);
+                break;
+        }
 
-		String[] blackList = blackListString.split(BlackListUtils.SPLIT);
-		
-		for(String str:blackList) {
-			if(!"".equals(str)) {
-				ItemBean itemBean = new ItemBean();
-				itemBean.number = str;
-				itemBean.name = CallLogsFragment.getContactNameByPhoneNumber(this, str);
-				result.add(itemBean);
-			}
-		}
-		return result;
-	}
+        return super.onOptionsItemSelected(item);
+    }
 
-	public class ItemBean {
-		public  String number;
-		public String name;
-	}
-	
-	
-	@Override
-	public void onClick(View v) {
-		int viewId = v.getId();
-		switch (viewId) {
-//		case R.id.add_number:
-//			String number = blockNumber.getText().toString();
-//			if (!isValidNumber(number)) {
-//				BlackListUtils.addNumber(MainActivity.this, number);
-//				ItemBean bean = new ItemBean();
-//				bean.number = number;
-//				bean.name = CallLogsFragment.getContactNameByPhoneNumber(this, number);
-//				blackList.add(bean);
-//				blackListViewAdapter.notifyDataSetChanged();
-//				Toast.makeText(MainActivity.this, "添加成功！", Toast.LENGTH_SHORT)
-//						.show();
-//			} else {
-//				Toast.makeText(MainActivity.this, "请输入正确的手机号码！",
-//						Toast.LENGTH_SHORT).show();
-//			}
-//			break;
-		case R.id.add:
-			Intent intent = new Intent(MainActivity.this,
-					AddBlockNumberActivity.class);
-			startActivity(intent);
-			break;
-//		case R.id.call_logs_btn:
-//			Intent callLogIntent = new Intent(MainActivity.this,
-//					CallLogsActivity.class);
-//			startActivity(callLogIntent);
-//			break;
+    @Override
+    protected void onResume() {
+        blackList = getBlackList();
+        blackListViewAdapter = new BlackListViewAdapter(this, blackList);
+        blackListView.setAdapter(blackListViewAdapter);
+        super.onResume();
+        TCAgent.onPageStart(this, TAG);
+    }
 
-//		case R.id.off_wall:
-//			DOW.getInstance(this).show(this);
-//			break;
-		}
-	}
-	
-	@Override
-	public void onBackPressed() {
-		// 如果有需要，可以点击后退关闭插播广告。
-	    if (!SpotManager.getInstance(this).disMiss()) {
-	        // 弹出退出窗口，可以使用自定义退屏弹出和回退动画,参照demo,若不使用动画，传入-1
-	        super.onBackPressed();
-	    }
-	}
-	private boolean isShowedAd = false;
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // 插屏广告
+        SpotManager.getInstance(this).onPause();
+    }
 
-	
-	
+    @Override
+    protected void onStop() {
+        super.onStop();
+        TCAgent.onPageEnd(this, TAG);
+        // 插屏广告
+        SpotManager.getInstance(this).onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // 插屏广告
+        SpotManager.getInstance(this).onDestroy();
+        SpotManager.getInstance(this).onAppExit();
+        Intent intent = new Intent(this, CoreService.class);
+        startService(intent);
+    }
+
+    /**
+     * 设置插屏广告
+     */
+    private void setupSpotAd() {
+        // 设置插屏图片类型，默认竖图
+        SpotManager.getInstance(this).setImageType(SpotManager.IMAGE_TYPE_VERTICAL);
+        // 高级动画
+        SpotManager.getInstance(this)
+                .setAnimationType(SpotManager.ANIMATION_TYPE_ADVANCED);
+
+        // 展示插屏广告
+        SpotManager.getInstance(this).showSpot(this, new SpotListener() {
+
+            @Override
+            public void onShowSuccess() {
+                Log.i("YouMi", "插屏展示成功");
+            }
+
+            @Override
+            public void onShowFailed(int errorCode) {
+                Log.i("YouMi", "插屏展示失败");
+                switch (errorCode) {
+                    case ErrorCode.NON_NETWORK:
+                        Log.i("YouMi", "网络异常");
+                        break;
+                    case ErrorCode.NON_AD:
+                        Log.i("YouMi", "暂无插屏广告");
+                        break;
+                    case ErrorCode.RESOURCE_NOT_READY:
+                        Log.i("YouMi", "插屏资源还没准备好");
+                        break;
+                    case ErrorCode.SHOW_INTERVAL_LIMITED:
+                        Log.i("YouMi", "请勿频繁展示");
+                        break;
+                    case ErrorCode.WIDGET_NOT_IN_VISIBILITY_STATE:
+                        Log.i("YouMi", "请设置插屏为可见状态");
+                        break;
+                    default:
+                        Log.i("YouMi", "请稍后再试");
+                        break;
+                }
+            }
+
+            @Override
+            public void onSpotClosed() {
+                Log.i("YouMi", "插屏被关闭");
+            }
+
+            @Override
+            public void onSpotClicked(boolean isWebPage) {
+                Log.i("YouMi", "插屏被点击");
+                Log.i("YouMi", "是否是网页广告？%s" + (isWebPage ? "是" : "不是"));
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        // 点击后退关闭插屏广告
+        if (SpotManager.getInstance(this).isSpotShowing()) {
+            Log.i("ygx", "is spotShowing");
+            SpotManager.getInstance(this).hideSpot();
+        } else {
+            Log.i("ygx", "back");
+            super.onBackPressed();
+        }
+    }
 }

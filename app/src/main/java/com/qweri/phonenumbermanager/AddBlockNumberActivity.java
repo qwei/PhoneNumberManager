@@ -1,28 +1,17 @@
 package com.qweri.phonenumbermanager;
 
-import android.Manifest;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
 
 import com.qweri.phonenumbermanager.utils.StatusBarUtil;
 import com.qweri.phonenumbermanager.widget.NavigationTabStrip;
 import com.tendcloud.tenddata.TCAgent;
-
-import er.kj.iy.br.AdSize;
-import er.kj.iy.br.AdView;
 
 public class AddBlockNumberActivity extends AppCompatActivity{
 
@@ -64,17 +53,17 @@ public class AddBlockNumberActivity extends AppCompatActivity{
 		mTabStrip.setViewPager(mViewPager, 1);
 	}
 	
-	private void loadADView(){
-		// 实例化广告条
-		AdView adView = new AdView(this, AdSize.FIT_SCREEN);
-
-		// 获取要嵌入广告条的布局
-		LinearLayout adLayout=(LinearLayout)findViewById(R.id.adLayout);
-
-		// 将广告条加入到布局中
-		adLayout.addView(adView);
-
-	}
+//	private void loadADView(){
+//		// 实例化广告条
+//		AdView adView = new AdView(this, AdSize.FIT_SCREEN);
+//
+//		// 获取要嵌入广告条的布局
+//		LinearLayout adLayout=(LinearLayout)findViewById(R.id.adLayout);
+//
+//		// 将广告条加入到布局中
+//		adLayout.addView(adView);
+//
+//	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
