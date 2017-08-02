@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name" translatable="false">来电拦截</string>
-    <string name="versionName" formatted="false">1.4.2</string>
+    <string name="versionName" formatted="false">1.4.3</string>
     <string name="tips">为了随时都能拦截到骚扰电话，应用需要一直在后台运行，所以要避免被系统或者其他应用杀死。请您做如下检查和操作：
         \n\n 1. 如果您的手机安装了加速助手，任务管理器，360安全卫士，腾讯安全卫士等应用，请将\"来电拦截\"添加到白名单
         \n\n 2. 在最近的任务里面，锁定\"来电拦截\"，不要清理它

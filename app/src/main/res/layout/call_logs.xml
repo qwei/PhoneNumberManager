@@ -1,34 +1,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#ffffff"
     android:orientation="vertical"
-    android:background="#ffffff">
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
 
     <ListView
         android:id="@+id/call_logs_list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:cacheColorHint="#FFFFFFFF"
+        android:clickable="false"
         android:divider="@color/divider_color"
         android:dividerHeight="1px"
-        android:scrollbars="vertical" 
-        android:clickable="false"
-        android:cacheColorHint="#FFFFFFFF"
-		android:fastScrollEnabled="true"
-        >
-    </ListView>
+        android:fastScrollEnabled="true"
+        android:scrollbars="vertical"/>
 
     <TextView
         android:id="@+id/empty_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/no_contact"
-        android:textSize="16sp"
         android:gravity="center"
-        android:padding="16dp"/>
-    
-   
-
+        android:padding="16dp"
+        android:text="@string/no_contact"
+        android:textSize="16sp" />
 </LinearLayout>

@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,23 +17,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.LinearInterpolator;
+import android.view.animation.AnimationSet;
+import android.view.animation.ScaleAnimation;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 
 import com.qweri.phonenumbermanager.adapter.BlackListViewAdapter;
 import com.qweri.phonenumbermanager.utils.StatusBarUtil;
 import com.tendcloud.tenddata.TCAgent;
 
 import net.youmi.android.nm.cm.ErrorCode;
-import net.youmi.android.nm.sp.SplashViewSettings;
 import net.youmi.android.nm.sp.SpotListener;
 import net.youmi.android.nm.sp.SpotManager;
 
@@ -44,12 +43,30 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
     private ListView blackListView;
     private BlackListViewAdapter blackListViewAdapter;
-    private ImageView mAdd;
+    private ImageView mAdd, mAddBg1, mAddBg2;
     private Toolbar mToolbar;
     private ImageView mEmptyView;
     private List<ItemBean> blackList;
-    boolean mIsShowSpotAd = false;
+    private int mShowSpotNum = 0;
 
+    private AnimationSet mAnimationSet1, mAnimationSet2;
+    private static final int OFFSET = 400;
+    private static final int MSG_WAVE1_ANIMATION = 2;
+    private static final int MSG_WAVE2_ANIMATION = 3;
+
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case MSG_WAVE1_ANIMATION:
+                    mAddBg1.startAnimation(mAnimationSet1);
+                    break;
+                case MSG_WAVE2_ANIMATION:
+                    mAddBg2.startAnimation(mAnimationSet2);
+                    break;
+            }
+        }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,6 +91,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     private void initView() {
         mEmptyView = (ImageView) findViewById(R.id.empty_view);
         blackListView = (ListView) findViewById(R.id.black_list_view);
+        mAddBg1 = (ImageView) findViewById(R.id.add_bg1);
+        mAddBg2 = (ImageView) findViewById(R.id.add_bg2);
 
         blackListView.setOnItemLongClickListener(new OnItemLongClickListener() {
 
@@ -87,16 +106,37 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         blackListView.setEmptyView(mEmptyView);
         mAdd = (ImageView) findViewById(R.id.add);
         mAdd.setOnClickListener(this);
-        setButtonAnim(mAdd);
+        mAnimationSet1 = initAnimationSet();
+        mAnimationSet2 = initAnimationSet();
+        showWaveAnimation();
     }
 
-    private void setButtonAnim(View view){
-        final Animation animation = new AlphaAnimation(1, 0);
-        animation.setDuration(500);
-        animation.setInterpolator(new LinearInterpolator());
-        animation.setRepeatCount(Animation.INFINITE);
-        animation.setRepeatMode(Animation.REVERSE);
-        view.startAnimation(animation);
+    private AnimationSet initAnimationSet() {
+        AnimationSet as = new AnimationSet(true);
+        ScaleAnimation sa = new ScaleAnimation(1f, 1.2f, 1f, 1.2f,
+                ScaleAnimation.RELATIVE_TO_SELF, 0.5f,
+                ScaleAnimation.RELATIVE_TO_SELF, 0.5f);
+        sa.setRepeatMode(Animation.REVERSE);
+        sa.setRepeatCount(Animation.INFINITE);
+        sa.setDuration(OFFSET*3);
+        AlphaAnimation aa = new AlphaAnimation(1, 0.5f);
+        aa.setRepeatMode(Animation.REVERSE);
+        aa.setRepeatCount(Animation.INFINITE);
+        aa.setDuration(OFFSET*3);
+        as.addAnimation(sa);
+        as.addAnimation(aa);
+        return as;
+    }
+
+    private void showWaveAnimation() {
+        mAddBg1.startAnimation(mAnimationSet1);
+        mHandler.sendEmptyMessageDelayed(MSG_WAVE1_ANIMATION, 0);
+        mHandler.sendEmptyMessageDelayed(MSG_WAVE2_ANIMATION, OFFSET);
+    }
+
+    private void clearWaveAnimation() {
+        mAddBg1.clearAnimation();
+        mAddBg2.clearAnimation();
     }
 
     private void showDeleteDialog(final int position) {
@@ -152,14 +192,14 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         int viewId = v.getId();
         switch (viewId) {
             case R.id.add:
-                v.clearAnimation();
-                if (mIsShowSpotAd) {
+                mShowSpotNum++;
+                clearWaveAnimation();
+                if (mShowSpotNum == 2) {
+                    setupSpotAd();
+                } else {
                     Intent intent = new Intent(MainActivity.this,
                             AddBlockNumberActivity.class);
                     startActivity(intent);
-                } else {
-                    setupSpotAd();
-                    mIsShowSpotAd = true;
                 }
                 break;
         }
