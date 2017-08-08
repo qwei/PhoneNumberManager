@@ -31,9 +31,13 @@ public class ManualAddFragment extends Fragment {
             public void onClick(View v) {
                 String number = blockNumber.getText().toString();
                 if (!isValidNumber(number)) {
-                    BlackListUtils.addNumber(getActivity(), number);
-                    getActivity().finish();
-                    Toast.makeText(getActivity(), "添加成功！", Toast.LENGTH_SHORT).show();
+                    if (BlackListUtils.isNumberInBlackList(getContext(), number)){
+                        Toast.makeText(getActivity(), "已添加过此手机号码！", Toast.LENGTH_SHORT).show();
+                    } else {
+                        BlackListUtils.addNumber(getActivity(), number);
+                        getActivity().finish();
+                        Toast.makeText(getActivity(), "添加成功！", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     Toast.makeText(getActivity(), "请输入正确的手机号码！", Toast.LENGTH_SHORT).show();
                 }

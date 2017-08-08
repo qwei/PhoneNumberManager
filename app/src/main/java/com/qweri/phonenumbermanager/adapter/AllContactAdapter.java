@@ -72,20 +72,6 @@ public class AllContactAdapter extends BaseAdapter {
 		} else {
 			viewHolder.stopImage.setImageResource(drawable.not_blocked);
 		}
-		viewHolder.stopImage.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				
-				bean.setInBlackList(!bean.isInBlackList());
-				if(bean.isInBlackList()) {
-					BlackListUtils.addNumber(context, bean.getTelephone());
-				} else {
-					BlackListUtils.deleteNumber(context, bean.getTelephone());
-				}
-				notifyDataSetChanged();
-			}
-		});
 		return convertView;
 	}
 

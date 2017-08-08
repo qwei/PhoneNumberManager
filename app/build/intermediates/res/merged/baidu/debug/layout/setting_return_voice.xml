@@ -64,6 +64,24 @@
             android:button="@drawable/abc_btn_radio_material"
             android:buttonTint="@color/main_color"
             />
+        <RadioButton android:id="@+id/button5"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/single_item_height"
+            android:text="手机已关机"
+            android:textSize="@dimen/title_size"
+            android:textColor="#bb333333"
+            android:button="@drawable/abc_btn_radio_material"
+            android:buttonTint="@color/main_color"
+            />
+        <RadioButton android:id="@+id/button6"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/single_item_height"
+            android:text="手机已停机"
+            android:textSize="@dimen/title_size"
+            android:textColor="#bb333333"
+            android:button="@drawable/abc_btn_radio_material"
+            android:buttonTint="@color/main_color"
+            />
     </RadioGroup>
 
     

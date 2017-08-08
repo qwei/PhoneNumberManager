@@ -1941,6 +1941,8 @@ containing a value of this type.
         public static final int button2=0x7f0b008a;
         public static final int button3=0x7f0b008b;
         public static final int button4=0x7f0b008c;
+        public static final int button5=0x7f0b008d;
+        public static final int button6=0x7f0b008e;
         public static final int buttonPanel=0x7f0b0030;
         public static final int call_logs_list=0x7f0b0069;
         public static final int cancel_action=0x7f0b006f;

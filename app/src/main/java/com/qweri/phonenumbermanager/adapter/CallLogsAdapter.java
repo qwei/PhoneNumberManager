@@ -96,20 +96,6 @@ public class CallLogsAdapter extends BaseAdapter {
         } else {
             viewHolder.stopImage.setImageResource(drawable.not_blocked);
         }
-        viewHolder.stopImage.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                callLogBean.setInBlackList(!callLogBean.isInBlackList());
-                if (callLogBean.isInBlackList()) {
-                    BlackListUtils.addNumber(context, callLogBean.getTelephone());
-                } else {
-                    BlackListUtils.deleteNumber(context, callLogBean.getTelephone());
-                }
-                notifyDataSetChanged();
-            }
-        });
         return convertView;
     }
 

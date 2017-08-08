@@ -103,10 +103,7 @@ public class AllContactFragment extends Fragment implements View.OnClickListener
                                 bean.setTelephone(data1);
                             }
                         }
-                        if (mCursor1 != null) {
-                            mCursor1.close();
-                        }
-
+                        mCursor1.close();
                         if (bean.getTelephone() != null && bean.getTelephone().length() == 11) {
                             if (getActivity() == null) {
                                 return;
@@ -119,9 +116,7 @@ public class AllContactFragment extends Fragment implements View.OnClickListener
                             handler.sendMessage(msg);
                         }
                     }
-                    if (mCursor != null) {
-                        mCursor.close();
-                    }
+                    mCursor.close();
                     Log.i("ygx","allcontact getAllContact finish:"+allContactAdapter.getCount());
                     Log.i(TAG,"getAllContact");
                 } catch (Exception e) {
@@ -135,12 +130,8 @@ public class AllContactFragment extends Fragment implements View.OnClickListener
     public void onDestroy() {
         Log.i("ygx","all contact destroy");
         super.onDestroy();
-        if (mCursor != null) {
-            mCursor.close();
-        }
-        if (mCursor1 != null) {
-            mCursor1.close();
-        }
+        mCursor.close();
+        mCursor1.close();
     }
 
     @Override

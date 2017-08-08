@@ -15,7 +15,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.CallLog.Calls;
 import android.provider.ContactsContract;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,6 +65,11 @@ public class CallLogsFragment extends Fragment implements AdapterView.OnItemClic
         } else {
             BlackListUtils.deleteNumber(getActivity(), bean.getTelephone());
         }
+        for (CallLogBean bean1 : mCallLogs) {
+            if (bean.getTelephone().equals(bean1.getTelephone())) {
+                bean1.setInBlackList(bean.isInBlackList());
+            }
+        }
         mCallLogAdapter.notifyDataSetChanged();
     }
 
@@ -90,10 +97,11 @@ public class CallLogsFragment extends Fragment implements AdapterView.OnItemClic
                         Message msg = mHandler.obtainMessage(LOAD_ONE_LOG_ID);
                         msg.obj = bean;
                         mHandler.sendMessage(msg);
+                        if (System.currentTimeMillis() - date.getTime() > DateUtils.DAY_IN_MILLIS * 5) {
+                            return;
+                        }
                     }
-                    if (mCursor != null) {
-                        mCursor.close();
-                    }
+                    mCursor.close();
                     Log.i(TAG,"getCallLogs");
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -144,8 +152,6 @@ public class CallLogsFragment extends Fragment implements AdapterView.OnItemClic
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mCursor != null) {
-            mCursor.close();
-        }
+        mCursor.close();
     }
 }

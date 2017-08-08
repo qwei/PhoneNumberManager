@@ -16,20 +16,20 @@
         "source": "/Users/yangguixue/Documents/snowPro/PhoneNumberManager/app/src/main/res/layout/activity_main.xml"
     },
     {
-        "merged": "/Users/yangguixue/Documents/snowPro/PhoneNumberManager/app/build/intermediates/res/merged/baidu/debug/layout/abc_screen_content_include.xml",
-        "source": "/Users/yangguixue/.android/build-cache/f518301ed570cdaf7ee81d8133f882a3443974e7/output/res/layout/abc_screen_content_include.xml"
-    },
-    {
         "merged": "/Users/yangguixue/Documents/snowPro/PhoneNumberManager/app/build/intermediates/res/merged/baidu/debug/layout/abc_activity_chooser_view.xml",
         "source": "/Users/yangguixue/.android/build-cache/f518301ed570cdaf7ee81d8133f882a3443974e7/output/res/layout/abc_activity_chooser_view.xml"
     },
     {
-        "merged": "/Users/yangguixue/Documents/snowPro/PhoneNumberManager/app/build/intermediates/res/merged/baidu/debug/layout/setting.xml",
-        "source": "/Users/yangguixue/Documents/snowPro/PhoneNumberManager/app/src/main/res/layout/setting.xml"
+        "merged": "/Users/yangguixue/Documents/snowPro/PhoneNumberManager/app/build/intermediates/res/merged/baidu/debug/layout/abc_screen_content_include.xml",
+        "source": "/Users/yangguixue/.android/build-cache/f518301ed570cdaf7ee81d8133f882a3443974e7/output/res/layout/abc_screen_content_include.xml"
     },
     {
         "merged": "/Users/yangguixue/Documents/snowPro/PhoneNumberManager/app/build/intermediates/res/merged/baidu/debug/layout/abc_activity_chooser_view_list_item.xml",
         "source": "/Users/yangguixue/.android/build-cache/f518301ed570cdaf7ee81d8133f882a3443974e7/output/res/layout/abc_activity_chooser_view_list_item.xml"
+    },
+    {
+        "merged": "/Users/yangguixue/Documents/snowPro/PhoneNumberManager/app/build/intermediates/res/merged/baidu/debug/layout/setting.xml",
+        "source": "/Users/yangguixue/Documents/snowPro/PhoneNumberManager/app/src/main/res/layout/setting.xml"
     },
     {
         "merged": "/Users/yangguixue/Documents/snowPro/PhoneNumberManager/app/build/intermediates/res/merged/baidu/debug/layout/notification_layout.xml",

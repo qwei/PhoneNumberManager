@@ -17,7 +17,7 @@
         android:scrollbars="vertical" 
         android:clickable="false"
         android:cacheColorHint="#FFFFFFFF"
-        android:fastScrollEnabled="true"
+        android:fastScrollEnabled="false"
         >
     </ListView>
 

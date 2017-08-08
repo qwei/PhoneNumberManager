@@ -14,7 +14,7 @@
         android:clickable="false"
         android:divider="@color/divider_color"
         android:dividerHeight="1px"
-        android:fastScrollEnabled="true"
+        android:fastScrollEnabled="false"
         android:scrollbars="vertical"/>
 
     <TextView
