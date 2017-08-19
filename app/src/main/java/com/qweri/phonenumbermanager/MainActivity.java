@@ -28,11 +28,6 @@ import android.widget.ListView;
 
 import com.qweri.phonenumbermanager.adapter.BlackListViewAdapter;
 import com.qweri.phonenumbermanager.utils.StatusBarUtil;
-import com.tendcloud.tenddata.TCAgent;
-
-import net.youmi.android.nm.cm.ErrorCode;
-import net.youmi.android.nm.sp.SpotListener;
-import net.youmi.android.nm.sp.SpotManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -268,30 +263,30 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         blackListViewAdapter = new BlackListViewAdapter(this, blackList);
         blackListView.setAdapter(blackListViewAdapter);
         super.onResume();
-        TCAgent.onPageStart(this, TAG);
+//        TCAgent.onPageStart(this, TAG);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         // 插屏广告
-        SpotManager.getInstance(this).onPause();
+//        SpotManager.getInstance(this).onPause();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        TCAgent.onPageEnd(this, TAG);
+//        TCAgent.onPageEnd(this, TAG);
         // 插屏广告
-        SpotManager.getInstance(this).onStop();
+//        SpotManager.getInstance(this).onStop();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         // 插屏广告
-        SpotManager.getInstance(this).onDestroy();
-        SpotManager.getInstance(this).onAppExit();
+//        SpotManager.getInstance(this).onDestroy();
+//        SpotManager.getInstance(this).onAppExit();
         Intent intent = new Intent(this, CoreService.class);
         startService(intent);
     }
@@ -301,66 +296,66 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
      */
     private void setupSpotAd() {
         // 设置插屏图片类型，默认竖图
-        SpotManager.getInstance(this).setImageType(SpotManager.IMAGE_TYPE_VERTICAL);
-        // 高级动画
-        SpotManager.getInstance(this)
-                .setAnimationType(SpotManager.ANIMATION_TYPE_ADVANCED);
-
-        // 展示插屏广告
-        SpotManager.getInstance(this).showSpot(this, new SpotListener() {
-
-            @Override
-            public void onShowSuccess() {
-                Log.i("YouMi", "插屏展示成功");
-            }
-
-            @Override
-            public void onShowFailed(int errorCode) {
-                Log.i("YouMi", "插屏展示失败");
-                switch (errorCode) {
-                    case ErrorCode.NON_NETWORK:
-                        Log.i("YouMi", "网络异常");
-                        break;
-                    case ErrorCode.NON_AD:
-                        Log.i("YouMi", "暂无插屏广告");
-                        break;
-                    case ErrorCode.RESOURCE_NOT_READY:
-                        Log.i("YouMi", "插屏资源还没准备好");
-                        break;
-                    case ErrorCode.SHOW_INTERVAL_LIMITED:
-                        Log.i("YouMi", "请勿频繁展示");
-                        break;
-                    case ErrorCode.WIDGET_NOT_IN_VISIBILITY_STATE:
-                        Log.i("YouMi", "请设置插屏为可见状态");
-                        break;
-                    default:
-                        Log.i("YouMi", "请稍后再试");
-                        break;
-                }
-            }
-
-            @Override
-            public void onSpotClosed() {
-                Log.i("YouMi", "插屏被关闭");
-            }
-
-            @Override
-            public void onSpotClicked(boolean isWebPage) {
-                Log.i("YouMi", "插屏被点击");
-                Log.i("YouMi", "是否是网页广告？%s" + (isWebPage ? "是" : "不是"));
-            }
-        });
+//        SpotManager.getInstance(this).setImageType(SpotManager.IMAGE_TYPE_VERTICAL);
+//        // 高级动画
+//        SpotManager.getInstance(this)
+//                .setAnimationType(SpotManager.ANIMATION_TYPE_ADVANCED);
+//
+//        // 展示插屏广告
+//        SpotManager.getInstance(this).showSpot(this, new SpotListener() {
+//
+//            @Override
+//            public void onShowSuccess() {
+//                Log.i("YouMi", "插屏展示成功");
+//            }
+//
+//            @Override
+//            public void onShowFailed(int errorCode) {
+//                Log.i("YouMi", "插屏展示失败");
+//                switch (errorCode) {
+//                    case ErrorCode.NON_NETWORK:
+//                        Log.i("YouMi", "网络异常");
+//                        break;
+//                    case ErrorCode.NON_AD:
+//                        Log.i("YouMi", "暂无插屏广告");
+//                        break;
+//                    case ErrorCode.RESOURCE_NOT_READY:
+//                        Log.i("YouMi", "插屏资源还没准备好");
+//                        break;
+//                    case ErrorCode.SHOW_INTERVAL_LIMITED:
+//                        Log.i("YouMi", "请勿频繁展示");
+//                        break;
+//                    case ErrorCode.WIDGET_NOT_IN_VISIBILITY_STATE:
+//                        Log.i("YouMi", "请设置插屏为可见状态");
+//                        break;
+//                    default:
+//                        Log.i("YouMi", "请稍后再试");
+//                        break;
+//                }
+//            }
+//
+//            @Override
+//            public void onSpotClosed() {
+//                Log.i("YouMi", "插屏被关闭");
+//            }
+//
+//            @Override
+//            public void onSpotClicked(boolean isWebPage) {
+//                Log.i("YouMi", "插屏被点击");
+//                Log.i("YouMi", "是否是网页广告？%s" + (isWebPage ? "是" : "不是"));
+//            }
+//        });
     }
 
     @Override
     public void onBackPressed() {
         // 点击后退关闭插屏广告
-        if (SpotManager.getInstance(this).isSpotShowing()) {
-            Log.i("ygx", "is spotShowing");
-            SpotManager.getInstance(this).hideSpot();
-        } else {
-            Log.i("ygx", "back");
+//        if (SpotManager.getInstance(this).isSpotShowing()) {
+//            Log.i("ygx", "is spotShowing");
+//            SpotManager.getInstance(this).hideSpot();
+//        } else {
+//            Log.i("ygx", "back");
             super.onBackPressed();
-        }
+//        }
     }
 }

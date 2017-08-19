@@ -11,7 +11,6 @@ import android.view.MenuItem;
 
 import com.qweri.phonenumbermanager.utils.StatusBarUtil;
 import com.qweri.phonenumbermanager.widget.NavigationTabStrip;
-import com.tendcloud.tenddata.TCAgent;
 
 public class AddBlockNumberActivity extends AppCompatActivity {
 
@@ -59,13 +58,13 @@ public class AddBlockNumberActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        TCAgent.onPageStart(this, TAG);
+//        TCAgent.onPageStart(this, TAG);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        TCAgent.onPageEnd(this, TAG);
+//        TCAgent.onPageEnd(this, TAG);
     }
 
     class MyPagerAdapter extends FragmentPagerAdapter {

@@ -15,7 +15,6 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Toast;
 
 import com.qweri.phonenumbermanager.utils.StatusBarUtil;
-import com.tendcloud.tenddata.TCAgent;
 
 public class SetReturnVoiceActivity extends AppCompatActivity {
 
@@ -137,12 +136,12 @@ public class SetReturnVoiceActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        TCAgent.onPageStart(this, TAG);
+//        TCAgent.onPageStart(this, TAG);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        TCAgent.onPageEnd(this, TAG);
+//        TCAgent.onPageEnd(this, TAG);
     }
 }

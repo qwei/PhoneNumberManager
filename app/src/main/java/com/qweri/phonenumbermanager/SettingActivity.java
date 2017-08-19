@@ -21,7 +21,6 @@ import android.widget.Toast;
 
 import com.qweri.phonenumbermanager.utils.SharedPreferenceUtils;
 import com.qweri.phonenumbermanager.utils.StatusBarUtil;
-import com.tendcloud.tenddata.TCAgent;
 
 public class SettingActivity extends AppCompatActivity implements OnCheckedChangeListener, OnClickListener{
 
@@ -86,7 +85,7 @@ public class SettingActivity extends AppCompatActivity implements OnCheckedChang
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		TCAgent.onPageStart(this, TAG);
+//		TCAgent.onPageStart(this, TAG);
 		if(mVoiceView != null) {
 			mVoiceView.setText(SetReturnVoiceActivity.
 					sServiceDescList[SetReturnVoiceActivity.getIndexInServiceList(BlackListUtils.getReturnVoice(this))]);
@@ -96,7 +95,7 @@ public class SettingActivity extends AppCompatActivity implements OnCheckedChang
 	@Override
 	protected void onStop() {
 		super.onStop();
-		TCAgent.onPageEnd(this, TAG);
+//		TCAgent.onPageEnd(this, TAG);
 	}
 
 	@Override
