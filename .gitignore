@@ -1,0 +1,13 @@
+.gradle
+build/
+bin/
+gen/
+target/
+out/
+classes/
+gradle.properties
+app/build/
+
+# Local build properties
+build.properties
+local.properties
