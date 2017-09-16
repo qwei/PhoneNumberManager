@@ -130,8 +130,12 @@ public class AllContactFragment extends Fragment implements View.OnClickListener
     public void onDestroy() {
         Log.i("ygx","all contact destroy");
         super.onDestroy();
-        mCursor.close();
-        mCursor1.close();
+        if (mCursor != null) {
+            mCursor.close();
+        }
+        if (mCursor1 != null) {
+            mCursor1.close();
+        }
     }
 
     @Override

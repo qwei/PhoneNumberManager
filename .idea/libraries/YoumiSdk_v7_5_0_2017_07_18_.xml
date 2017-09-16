@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="YoumiSdk_v7.5.0_2017-07-18-">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.android/build-cache/d18a218e042c125ce7e6e11174bc6dd0fa2f438e/output/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.android/build-cache/d18a218e042c125ce7e6e11174bc6dd0fa2f438e/output/res" />
+      <root url="file://$USER_HOME$/.android/build-cache/3fb80ce9f8e27401d529ebbd8d4e4ec32ff837a5/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/3fb80ce9f8e27401d529ebbd8d4e4ec32ff837a5/output/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
