@@ -152,6 +152,8 @@ public class CallLogsFragment extends Fragment implements AdapterView.OnItemClic
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mCursor.close();
+        if (mCursor != null) {
+            mCursor.close();
+        }
     }
 }
