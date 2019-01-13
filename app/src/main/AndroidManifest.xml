@@ -53,7 +53,18 @@
             </intent-filter>
         </receiver>
         <meta-data android:name="TD_APP_ID" android:value="90C61879680480AEFB0A4FA2D0FF4A37" />
-  <meta-data android:name="TD_CHANNEL_ID" android:value="${TD_CHANNEL_ID_VALUE}" />
+  <!--<meta-data android:name="TD_CHANNEL_ID" android:value="${TD_CHANNEL_ID_VALUE}" />-->
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.youmi.android.addemo.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_provider" />
+        </provider >
 
     </application>
 

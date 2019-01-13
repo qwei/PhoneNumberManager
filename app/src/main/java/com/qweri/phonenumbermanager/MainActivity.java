@@ -30,12 +30,12 @@ import com.qweri.phonenumbermanager.adapter.BlackListViewAdapter;
 import com.qweri.phonenumbermanager.utils.StatusBarUtil;
 import com.tendcloud.tenddata.TCAgent;
 
-import net.youmi.android.nm.cm.ErrorCode;
-import net.youmi.android.nm.sp.SpotListener;
-import net.youmi.android.nm.sp.SpotManager;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import cds.sdg.sdf.nm.cm.ErrorCode;
+import cds.sdg.sdf.nm.sp.SpotListener;
+import cds.sdg.sdf.nm.sp.SpotManager;
 
 public class MainActivity extends AppCompatActivity implements OnClickListener {
 

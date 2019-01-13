@@ -3,13 +3,6 @@ package com.qweri.phonenumbermanager;
 import com.tendcloud.tenddata.TCAgent;
 
 import android.app.Application;
-import android.util.Log;
-
-import net.youmi.android.AdManager;
-import net.youmi.android.nm.cm.ErrorCode;
-import net.youmi.android.nm.sp.SpotManager;
-import net.youmi.android.nm.sp.SpotRequestListener;
-import net.youmi.android.nm.vdo.VideoAdManager;
 
 import org.saturn.daemon.KeepAliveHelper;
 

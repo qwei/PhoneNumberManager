@@ -1,23 +1,25 @@
 package com.qweri.phonenumbermanager.widget;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.qweri.phonenumbermanager.MainActivity;
 import com.qweri.phonenumbermanager.R;
 
-import net.youmi.android.AdManager;
-import net.youmi.android.nm.cm.ErrorCode;
-import net.youmi.android.nm.sp.SplashViewSettings;
-import net.youmi.android.nm.sp.SpotListener;
-import net.youmi.android.nm.sp.SpotManager;
-import net.youmi.android.nm.sp.SpotRequestListener;
+import cds.sdg.sdf.AdManager;
+import cds.sdg.sdf.nm.cm.ErrorCode;
+import cds.sdg.sdf.nm.sp.SplashViewSettings;
+import cds.sdg.sdf.nm.sp.SpotListener;
+import cds.sdg.sdf.nm.sp.SpotManager;
+import cds.sdg.sdf.nm.sp.SpotRequestListener;
 
 /**
  * 开屏广告演示窗口
@@ -27,16 +29,57 @@ import net.youmi.android.nm.sp.SpotRequestListener;
  */
 public class SplashActivity extends Activity {
 
+    private static final String TAG = "SplashActivity";
+    private PermissionHelper mPermissionHelper;
+    private Context mContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        mContext = this;
         // 设置全屏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         // 移除标题栏
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_splash);
-        runApp();
+
+        // 当系统为6.0以上时，需要申请权限
+        mPermissionHelper = new PermissionHelper(this);
+        mPermissionHelper.setOnApplyPermissionListener(new PermissionHelper.OnApplyPermissionListener() {
+            @Override
+            public void onAfterApplyAllPermission() {
+                Log.i(TAG, "All of requested permissions has been granted, so run app logic.");
+                runApp();
+            }
+        });
+        if (Build.VERSION.SDK_INT < 23) {
+            // 如果系统版本低于23，直接跑应用的逻辑
+            Log.d(TAG, "The api level of system is lower than 23, so run app logic directly.");
+            runApp();
+        } else {
+            // 如果权限全部申请了，那就直接跑应用逻辑
+            if (mPermissionHelper.isAllRequestedPermissionGranted()) {
+                Log.d(TAG, "All of requested permissions has been granted, so run app logic directly.");
+                runApp();
+            } else {
+                // 如果还有权限为申请，而且系统版本大于23，执行申请权限逻辑
+                Log.i(TAG, "Some of requested permissions hasn't been granted, so apply permissions first.");
+                mPermissionHelper.applyPermissions();
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        mPermissionHelper.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mPermissionHelper.onActivityResult(requestCode, resultCode, data);
     }
 
     /**
@@ -44,7 +87,7 @@ public class SplashActivity extends Activity {
      */
     private void runApp() {
         //初始化SDK
-        AdManager.getInstance(this).init("a6c6d83fa417ae12", "c0608df0ff8cd5ec", false);
+        AdManager.getInstance(mContext).init("a6c6d83fa417ae12", "c0608df0ff8cd5ec", false);
         preloadAd();
         setupSplashAd(); // 如果需要首次展示开屏，请注释掉本句代码
     }
@@ -54,24 +97,27 @@ public class SplashActivity extends Activity {
      */
     private void preloadAd() {
         // 注意：不必每次展示插播广告前都请求，只需在应用启动时请求一次
-        SpotManager.getInstance(this).requestSpot(new SpotRequestListener() {
+        SpotManager.getInstance(mContext).requestSpot(new SpotRequestListener() {
             @Override
             public void onRequestSuccess() {
-                Log.i("YouMi", "请求插播广告成功");
+                Log.d(TAG, "onRequestSuccess: 请求插屏广告成功");
+                //				// 应用安装后首次展示开屏会因为本地没有数据而跳过
+                //              // 如果开发者需要在首次也能展示开屏，可以在请求广告成功之前展示应用的logo，请求成功后再加载开屏
+                //				setupSplashAd();
             }
 
             @Override
             public void onRequestFailed(int errorCode) {
-                Log.i("YouMi", "请求插播广告失败"+errorCode);
+                Log.d(TAG, "onRequestFailed: 请求插屏广告失败，errorCode: %" + errorCode);
                 switch (errorCode) {
                     case ErrorCode.NON_NETWORK:
-                        Log.i("YouMi", "网络异常");
+                        Log.d(TAG, "onRequestFailed: 网络异常");
                         break;
                     case ErrorCode.NON_AD:
-                        Log.i("YouMi", "暂无视频广告");
+                        Log.d(TAG, "onRequestFailed: 暂无插屏广告");
                         break;
                     default:
-                        Log.i("YouMi", "请稍后再试");
+                        Log.d(TAG, "onRequestFailed: 请稍后再试");
                         break;
                 }
             }
@@ -98,47 +144,48 @@ public class SplashActivity extends Activity {
         splashViewSettings.setSplashViewContainer(splashLayout);
 
         // 展示开屏广告
-        SpotManager.getInstance(this)
-                .showSplash(this, splashViewSettings, new SpotListener() {
+        SpotManager.getInstance(mContext)
+                .showSplash(mContext, splashViewSettings, new SpotListener() {
 
                     @Override
                     public void onShowSuccess() {
-                        Log.i("YouMi","开屏展示成功");
+                        Log.d(TAG, "onShowSuccess: 开屏展示成功");
                     }
 
                     @Override
                     public void onShowFailed(int errorCode) {
-                        Log.i("YouMi","开屏展示失败");
+                        Log.d(TAG, "onShowFailed: 开屏展示失败");
                         switch (errorCode) {
                             case ErrorCode.NON_NETWORK:
-                                Log.i("YouMi","网络异常");
+                                Log.d(TAG, "onShowFailed: 网络异常");
                                 break;
                             case ErrorCode.NON_AD:
-                                Log.i("YouMi","暂无开屏广告");
+                                Log.d(TAG, "onShowFailed: 暂无开屏广告");
                                 break;
                             case ErrorCode.RESOURCE_NOT_READY:
-                                Log.i("YouMi","开屏资源还没准备好");
+                                Log.d(TAG, "onShowFailed: 开屏资源还没准备好");
                                 break;
                             case ErrorCode.SHOW_INTERVAL_LIMITED:
-                                Log.i("YouMi","开屏展示间隔限制");
+                                Log.d(TAG, "onShowFailed: 开屏展示间隔限制");
                                 break;
                             case ErrorCode.WIDGET_NOT_IN_VISIBILITY_STATE:
-                                Log.i("YouMi","开屏控件处在不可见状态");
+                                Log.d(TAG, "onShowFailed: 开屏控件处在不可见状态");
                                 break;
                             default:
-                                Log.i("YouMi","errorCode"+errorCode);
+                                Log.d(TAG, "onShowFailed: errorCode=" + errorCode);
                                 break;
                         }
                     }
 
                     @Override
                     public void onSpotClosed() {
-                        Log.i("YouMi","开屏被关闭");
+                        Log.d(TAG, "onSpotClosed: 开屏被关闭");
                     }
 
                     @Override
                     public void onSpotClicked(boolean isWebPage) {
-                        Log.i("YouMi","开屏被点击");
+                        Log.d(TAG, "onSpotClicked: 开屏被点击");
+                        Log.d(TAG, "onSpotClicked: 是否是网页广告？" + (isWebPage ? "是" : "不是"));
                     }
                 });
     }
@@ -147,6 +194,6 @@ public class SplashActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         // 开屏展示界面的 onDestroy() 回调方法中调用
-        SpotManager.getInstance(this).onDestroy();
+        SpotManager.getInstance(mContext).onDestroy();
     }
 }

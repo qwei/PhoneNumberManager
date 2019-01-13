@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao' // apply plugin
 android {
-    compileSdkVersion 24
-    buildToolsVersion '25.0.0'
+    compileSdkVersion 26
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "com.qweri.phonenumbermanager"
@@ -21,28 +21,28 @@ android {
         }
     }
 
-    productFlavors {
-
-        wandoujia {}
-        baidu {}
-        tencent {}
-        lianxiang {}
-        smartisan {}
-        xiaomi {}
-        mumayi{}
-        anzhi{}
-        jifeng{}
-        huawei{}
-        samsung{}
-        _91{}
-        android{}
-        ppzhushou{}
-        gp{}
-        productFlavors.all { flavor ->
-            flavor.manifestPlaceholders = [TD_CHANNEL_ID_VALUE: name]
-        }
-
-    }
+//    productFlavors {
+//
+//        wandoujia {}
+//        baidu {}
+//        tencent {}
+//        lianxiang {}
+//        smartisan {}
+//        xiaomi {}
+//        mumayi{}
+//        anzhi{}
+//        jifeng{}
+//        huawei{}
+//        samsung{}
+//        _91{}
+//        android{}
+//        ppzhushou{}
+//        gp{}
+//        productFlavors.all { flavor ->
+//            flavor.manifestPlaceholders = [TD_CHANNEL_ID_VALUE: name]
+//        }
+//
+//    }
 }
 
 repositories {
@@ -53,7 +53,7 @@ repositories {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile(name: 'YoumiSdk_v7.5.0_2017-07-18', ext: 'aar')
+    compile(name: 'YoumiSdk_v8.3.0_2018-10-11', ext: 'aar')
     compile 'com.android.support:support-v4:24.0.0'
     compile 'com.android.support:appcompat-v7:24.0.0'
 //    compile 'org.greenrobot:greendao:3.2.2' // add library
